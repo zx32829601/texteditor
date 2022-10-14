@@ -2,7 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-public class File extends UI implements ActionListener {
+public class File implements ActionListener {
+    private UI ui;
     private JMenuItem menuOpen;
     private JMenuItem menuSave;
     private JMenuItem menuSaveAs;
@@ -10,10 +11,11 @@ public class File extends UI implements ActionListener {
     private JTextArea textArea;
     private JFileChooser fileChooser=new JFileChooser();
 
+    public File(UI ui){
+        this.ui=ui;
+    }
+
     //開啟檔案
-
-
-
 
     // 選單 - 另存新檔
         public void saveFileAs(){
@@ -77,7 +79,7 @@ public class File extends UI implements ActionListener {
         if(option==JFileChooser.APPROVE_OPTION){
             try{
                 BufferedReader buf= new BufferedReader(new FileReader(fileChooser.getSelectedFile()));
-                setTitle(fileChooser.getSelectedFile().toString());
+                ui.setTitle(fileChooser.getSelectedFile().toString());
                 textArea.setText("");
                 stateBar.setText("未修改");
                 String lineSeparator=System.getProperty("line.separator");

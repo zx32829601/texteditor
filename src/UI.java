@@ -21,6 +21,7 @@ public class UI extends JFrame{
         setSize(640, 480);
 
         menuFile=new JMenu("檔案");
+
         JMenuItem open = new JMenuItem("開啟舊檔");
         menuFile.add(open);
         open.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_DOWN_MASK));
