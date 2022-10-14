@@ -8,6 +8,7 @@ public class UI extends JFrame implements ActionListener {
     private JToolBar toolBar;
     private  JMenu menuFile,menuEdit,menuFind,menuAbout;
     private JButton newButton,undoButton,redoButton;
+    private JMenuItem openFile,saveFile,saveFileAs,cut,paste,copy;
     private int wordCount;
     JTextArea textArea;
 
@@ -37,10 +38,38 @@ public class UI extends JFrame implements ActionListener {
         setSize(640, 480);
         toolBar=new JToolBar();
         menuBar=new JMenuBar();
+        //menuFile
         menuFile=new JMenu("檔案");
+        openFile=new JMenuItem("開啟舊檔");
+        saveFile=new JMenuItem("儲存檔案");
+        saveFileAs=new JMenuItem("另存新檔");
+        menuFile.add(openFile);
+        menuFile.addSeparator();
+        menuFile.add(saveFile);
+        menuFile.add(saveFileAs);
+
+
+        //menuEdit
         menuEdit=new JMenu("編輯");
+        cut=new JMenuItem("剪下");
+        copy=new JMenuItem("複製");
+        paste=new JMenuItem("貼上");
+        menuEdit.add(cut);
+        menuEdit.add(copy);
+        menuEdit.add(paste);
+
+
+        //menuFind
         menuFind=new JMenu("尋找");
+
+
+        //menuAbout
         menuAbout=new JMenu("關於");
+
+
+
+
+
         menuBar.add(menuFile);
         menuBar.add(menuEdit);
         menuBar.add(menuFind);
