@@ -1,6 +1,7 @@
 import javax.swing.*;
 public class UI extends JFrame{
     private final JMenuBar menuBar=new JMenuBar();
+
     private  JMenu menuFile,menuEdit,menuFind,menuAbout;
     public UI(){
         super("新增文字檔案");
@@ -30,3 +31,5 @@ public class UI extends JFrame{
 
 
 }
+
+
