@@ -42,6 +42,24 @@ public class UI extends JFrame implements ActionListener {
 
     private void setUpEventListener() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        //word-count-listener
+        textArea.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                recalculateWords();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                recalculateWords();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                recalculateWords();
+            }
+        });
     }
 
     private void setUpUIComponent() {
@@ -98,23 +116,9 @@ public class UI extends JFrame implements ActionListener {
         Container contentPane=getContentPane();
         contentPane.add(panel,BorderLayout.CENTER);
 
-        //計算字數
-        textArea.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                recalculateWords();
-            }
 
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                recalculateWords();
-            }
 
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                recalculateWords();
-            }
-        });
+
 
 
         //狀態列
@@ -132,9 +136,7 @@ public class UI extends JFrame implements ActionListener {
         this.add(toolBar, BorderLayout.NORTH);
     }
 
-    //計算字數
-
-
+    //word-count-method
     private void recalculateWords() {
         String text=textArea.getText();
         stateBar.setText("Characters:"+text.length());
