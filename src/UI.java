@@ -3,19 +3,22 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * @author zx328
+ */
 public class UI extends JFrame implements ActionListener {
-    private JMenuBar menuBar;
-    private JToolBar toolBar;
-    private  JMenu menuFile,menuEdit,menuFind,menuAbout;
-    private JButton newButton,undoButton,redoButton;
-    private JMenuItem openFile,saveFile,saveFileAs,cut,paste,copy;
-    private int wordCount;
+     JMenuBar menuBar;
+     JToolBar toolBar;
+      JMenu menuFile,menuEdit,menuFind,menuAbout;
+     JButton newButton,undoButton,redoButton;
+     JMenuItem openFile,saveFile,saveFileAs,cut,paste,copy;
+     int wordCount;
     JTextArea textArea;
 
     //定義圖片
     Image image=new ImageIcon("src/icons/new.png").getImage();
-    Image nimage=image.getScaledInstance(20,20, Image.SCALE_AREA_AVERAGING);
-    ImageIcon newIcon=new ImageIcon(nimage);
+    Image nImage=image.getScaledInstance(20,20, Image.SCALE_AREA_AVERAGING);
+    ImageIcon newIcon=new ImageIcon(nImage);
     Image undoImage=new ImageIcon("src/icons/undo.png").getImage();
     Image uImage=undoImage.getScaledInstance(20,20,Image.SCALE_AREA_AVERAGING);
     ImageIcon undoIcon=new ImageIcon(uImage);
@@ -86,8 +89,8 @@ public class UI extends JFrame implements ActionListener {
         textArea.setFont(new Font("細明體",Font.PLAIN,16));
         textArea.setLineWrap(true);
         JScrollPane panel=new JScrollPane(textArea,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        Container cotentPane=getContentPane();
-        cotentPane.add(panel,BorderLayout.CENTER);
+        Container contentPane=getContentPane();
+        contentPane.add(panel,BorderLayout.CENTER);
 
 
         //狀態列
@@ -96,7 +99,7 @@ public class UI extends JFrame implements ActionListener {
         stateBar.setBorder(
                 BorderFactory.createEtchedBorder()
         );
-        cotentPane.add(stateBar,BorderLayout.SOUTH);
+        contentPane.add(stateBar,BorderLayout.SOUTH);
 
         toolBar.add(newButton);
         toolBar.add(undoButton);
