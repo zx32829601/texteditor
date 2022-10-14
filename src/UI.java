@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,13 +9,18 @@ import java.awt.event.ActionListener;
  * @author zx328
  */
 public class UI extends JFrame implements ActionListener {
+
      JMenuBar menuBar;
      JToolBar toolBar;
       JMenu menuFile,menuEdit,menuFind,menuAbout;
      JButton newButton,undoButton,redoButton;
      JMenuItem openFile,saveFile,saveFileAs,cut,paste,copy;
-     int wordCount;
-    JTextArea textArea;
+
+     JLabel stateBar;
+
+    JTextArea textArea=new JTextArea();
+
+
 
     //定義圖片
     Image image=new ImageIcon("src/icons/new.png").getImage();
@@ -85,16 +92,33 @@ public class UI extends JFrame implements ActionListener {
         undoButton=new JButton(undoIcon);
 
         //文字編輯區
-        textArea=new JTextArea();
         textArea.setFont(new Font("細明體",Font.PLAIN,16));
         textArea.setLineWrap(true);
         JScrollPane panel=new JScrollPane(textArea,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         Container contentPane=getContentPane();
         contentPane.add(panel,BorderLayout.CENTER);
 
+        //計算字數
+        textArea.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                recalculateWords();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                recalculateWords();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                recalculateWords();
+            }
+        });
+
 
         //狀態列
-        JLabel stateBar=new JLabel(String.valueOf(wordCount));
+         stateBar=new JLabel("Characters:"+0);
         stateBar.setHorizontalAlignment(SwingConstants.LEFT);
         stateBar.setBorder(
                 BorderFactory.createEtchedBorder()
@@ -108,6 +132,13 @@ public class UI extends JFrame implements ActionListener {
         this.add(toolBar, BorderLayout.NORTH);
     }
 
+    //計算字數
+
+
+    private void recalculateWords() {
+        String text=textArea.getText();
+        stateBar.setText("Characters:"+text.length());
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
