@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
  */
 public class UI extends JFrame implements ActionListener {
 
+
      JMenuBar menuBar;
      JToolBar toolBar;
       JMenu menuFile,menuEdit,menuFind,menuAbout;
@@ -19,6 +20,7 @@ public class UI extends JFrame implements ActionListener {
      JLabel stateBar;
 
     JTextArea textArea=new JTextArea();
+    WordCount wordCount=new WordCount();
 
 
 
@@ -44,22 +46,7 @@ public class UI extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //word-count-listener
-        textArea.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                recalculateWords();
-            }
 
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                recalculateWords();
-            }
-
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                recalculateWords();
-            }
-        });
     }
 
     private void setUpUIComponent() {
@@ -112,22 +99,19 @@ public class UI extends JFrame implements ActionListener {
         //文字編輯區
         textArea.setFont(new Font("細明體",Font.PLAIN,16));
         textArea.setLineWrap(true);
+        textArea.getDocument().addDocumentListener(new WordCount());
         JScrollPane panel=new JScrollPane(textArea,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         Container contentPane=getContentPane();
         contentPane.add(panel,BorderLayout.CENTER);
+        contentPane.add(wordCount.stateBar,BorderLayout.SOUTH);
 
 
 
 
 
 
-        //狀態列
-         stateBar=new JLabel("Characters:"+0);
-        stateBar.setHorizontalAlignment(SwingConstants.LEFT);
-        stateBar.setBorder(
-                BorderFactory.createEtchedBorder()
-        );
-        contentPane.add(stateBar,BorderLayout.SOUTH);
+
+
 
         toolBar.add(newButton);
         toolBar.add(undoButton);
@@ -136,14 +120,13 @@ public class UI extends JFrame implements ActionListener {
         this.add(toolBar, BorderLayout.NORTH);
     }
 
+
     //word-count-method
-    private void recalculateWords() {
-        String text=textArea.getText();
-        stateBar.setText("Characters:"+text.length());
-    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+
 
     }
 }
