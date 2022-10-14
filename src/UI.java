@@ -1,11 +1,15 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class UI extends JFrame{
+public class UI extends JFrame implements ActionListener {
     private JMenuBar menuBar;
     private JToolBar toolBar;
     private  JMenu menuFile,menuEdit,menuFind,menuAbout;
     private JButton newButton,undoButton,redoButton;
+    private int wordCount;
+    JTextArea textArea;
 
     //定義圖片
     Image image=new ImageIcon("src/icons/new.png").getImage();
@@ -48,7 +52,22 @@ public class UI extends JFrame{
         //上一步
         undoButton=new JButton(undoIcon);
 
-        //
+        //文字編輯區
+        textArea=new JTextArea();
+        textArea.setFont(new Font("細明體",Font.PLAIN,16));
+        textArea.setLineWrap(true);
+        JScrollPane panel=new JScrollPane(textArea,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        Container cotentPane=getContentPane();
+        cotentPane.add(panel,BorderLayout.CENTER);
+
+
+        //狀態列
+        JLabel stateBar=new JLabel(String.valueOf(wordCount));
+        stateBar.setHorizontalAlignment(SwingConstants.LEFT);
+        stateBar.setBorder(
+                BorderFactory.createEtchedBorder()
+        );
+        cotentPane.add(stateBar,BorderLayout.SOUTH);
 
         toolBar.add(newButton);
         toolBar.add(undoButton);
@@ -58,5 +77,8 @@ public class UI extends JFrame{
     }
 
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
 
+    }
 }
