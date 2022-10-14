@@ -1,4 +1,7 @@
 import javax.swing.*;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
+
 public class UI extends JFrame{
     private final JMenuBar menuBar=new JMenuBar();
 
@@ -18,6 +21,18 @@ public class UI extends JFrame{
         setSize(640, 480);
 
         menuFile=new JMenu("檔案");
+        JMenuItem open = new JMenuItem("開啟舊檔");
+        menuFile.add(open);
+        open.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_DOWN_MASK));
+
+        JMenuItem save = new JMenuItem("儲存檔案");
+        menuFile.add(save);
+        save.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK));
+
+        JMenuItem saveAs = new JMenuItem("另存新檔");
+        menuFile.add(saveAs);
+        saveAs.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F12, InputEvent.CTRL_DOWN_MASK));
+
         menuEdit=new JMenu("編輯");
         menuFind=new JMenu("尋找");
         menuAbout=new JMenu("關於");
