@@ -1,7 +1,7 @@
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.text.Document;
+import javax.swing.text.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,14 +14,16 @@ public class UI extends JFrame implements ActionListener {
 
      JMenuBar menuBar;
      JToolBar toolBar;
-      JMenu menuFile,menuEdit,menuFind,menuAbout;
+      JMenu menuFile,menuEdit,menuFind,menuAbout,menuColor;
      JButton newButton,undoButton,redoButton;
-     JMenuItem openFile,saveFile,saveFileAs,cut,paste,copy;
+     JMenuItem openFile,saveFile,saveFileAs,cut,paste,copy,blue,red,pink;
 
      JLabel stateBar;
 
+    StyleContext sc=new StyleContext();
+    DefaultStyledDocument doc=new DefaultStyledDocument(sc);
+    JTextPane textPane=new JTextPane(doc);
 
-    JTextPane textPane=new JTextPane();
 
 
 
@@ -83,6 +85,17 @@ public class UI extends JFrame implements ActionListener {
         //menuAbout
         menuAbout=new JMenu("關於");
 
+        //menuColor
+        menuColor=new JMenu("字體顏色");
+        blue=new JMenuItem("藍色");
+        red=new JMenuItem("紅色");
+        pink=new JMenuItem("粉紅色");
+        blue.addActionListener(new FontEdit(textPane));
+        red.addActionListener(new FontEdit(textPane));
+        pink.addActionListener(new FontEdit(textPane));
+        menuColor.add(blue);
+        menuColor.add(red);
+        menuColor.add(pink);
 
 
 
@@ -90,6 +103,7 @@ public class UI extends JFrame implements ActionListener {
         menuBar.add(menuFile);
         menuBar.add(menuEdit);
         menuBar.add(menuFind);
+        menuBar.add(menuColor);
         menuBar.add(menuAbout);
 
         //建立新檔
@@ -109,11 +123,12 @@ public class UI extends JFrame implements ActionListener {
         //顯示字數
         stateBar=new JLabel("Characters:"+0);
         stateBar.setHorizontalAlignment(SwingConstants.LEFT);
-//        stateBar.setBorder(
-//                BorderFactory.createEtchedBorder()
-//        );
         textPane.getDocument().addDocumentListener(new WordCountListener(stateBar));
         contentPane.add(stateBar,BorderLayout.SOUTH);
+
+
+
+
 
 
 
@@ -129,8 +144,13 @@ public class UI extends JFrame implements ActionListener {
 
 
 
+
     @Override
     public void actionPerformed(ActionEvent e) {
+
+
+
+
 
 
 
