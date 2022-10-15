@@ -16,15 +16,14 @@ public class UI extends JFrame implements ActionListener {
 
     JMenuBar menuBar;
     JToolBar toolBar;
-    JMenu menuFile, menuEdit, menuFind, menuAbout, menuColor,menuFont;
+    JMenu menuFile, menuEdit, menuFind, menuAbout, menuColor, menuFont;
     JButton newButton, undoButton, redoButton;
-    JMenuItem openFile, saveFile, saveFileAs, cut, paste, copy, blue, red, pink,standard,microsoftBold ,newDetail;
+    JMenuItem openFile, saveFile, saveFileAs, cut, paste, copy, blue, red, pink, standard, microsoftBold, newDetail;
+    final CustomTextPane textPane=new CustomTextPane(true);
 
     JLabel stateBar;
 
-    StyleContext sc = new StyleContext();
-    DefaultStyledDocument doc = new DefaultStyledDocument(sc);
-    JTextPane textPane = new JTextPane(doc);
+
 
 
     //定義圖片
@@ -76,11 +75,11 @@ public class UI extends JFrame implements ActionListener {
         //menuEdit
         menuEdit = new JMenu("編輯");
         cut = new JMenuItem("剪下");
-        cut.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X,InputEvent.CTRL_DOWN_MASK));
+        cut.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_DOWN_MASK));
         copy = new JMenuItem("複製");
-        copy.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C,InputEvent.CTRL_DOWN_MASK));
+        copy.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_DOWN_MASK));
         paste = new JMenuItem("貼上");
-        paste.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V,InputEvent.CTRL_DOWN_MASK));
+        paste.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, InputEvent.CTRL_DOWN_MASK));
         menuEdit.add(cut);
         menuEdit.add(copy);
         menuEdit.add(paste);
@@ -106,17 +105,17 @@ public class UI extends JFrame implements ActionListener {
         menuColor.add(pink);
 
         //menuFont
-        menuFont=new JMenu("字體");
+        menuFont = new JMenu("字體");
 
-        standard=new JMenuItem("標楷體");
+        standard = new JMenuItem("標楷體");
         standard.addActionListener(new FontEdit(textPane));
         menuFont.add(standard);
 
-        microsoftBold=new JMenuItem("微軟正黑體");
+        microsoftBold = new JMenuItem("微軟正黑體");
         microsoftBold.addActionListener(new FontEdit(textPane));
         menuFont.add(microsoftBold);
 
-        newDetail=new JMenuItem("新細明體");
+        newDetail = new JMenuItem("新細明體");
         newDetail.addActionListener(new FontEdit(textPane));
         menuFont.add(newDetail);
 
@@ -162,4 +161,5 @@ public class UI extends JFrame implements ActionListener {
 
 
     }
+
 }
