@@ -5,6 +5,8 @@ import javax.swing.text.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 
 /**
  * @author zx328
@@ -12,13 +14,13 @@ import java.awt.event.ActionListener;
 public class UI extends JFrame implements ActionListener {
 
 
-     JMenuBar menuBar;
-     JToolBar toolBar;
-      JMenu menuFile,menuEdit,menuFind,menuAbout,menuColor;
-     JButton newButton,undoButton,redoButton;
-     JMenuItem openFile,saveFile,saveFileAs,cut,paste,copy,blue,red,pink;
+    JMenuBar menuBar;
+    JToolBar toolBar;
+    JMenu menuFile,menuEdit,menuFind,menuAbout,menuColor;
+    JButton newButton,undoButton,redoButton;
+    JMenuItem openFile,saveFile,saveFileAs,cut,paste,copy,blue,red,pink;
 
-     JLabel stateBar;
+    JLabel stateBar;
 
     StyleContext sc=new StyleContext();
     DefaultStyledDocument doc=new DefaultStyledDocument(sc);
@@ -59,9 +61,16 @@ public class UI extends JFrame implements ActionListener {
         menuBar=new JMenuBar();
         //menuFile
         menuFile=new JMenu("檔案");
-        openFile=new JMenuItem("開啟舊檔");
-        saveFile=new JMenuItem("儲存檔案");
-        saveFileAs=new JMenuItem("另存新檔");
+
+         openFile = new JMenuItem("開啟舊檔");
+        openFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_DOWN_MASK));
+
+         saveFile = new JMenuItem("儲存檔案");
+        saveFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK));
+
+         saveFileAs = new JMenuItem("另存新檔");
+        saveFileAs.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F12, InputEvent.CTRL_DOWN_MASK));
+
         menuFile.add(openFile);
         menuFile.addSeparator();
         menuFile.add(saveFile);
