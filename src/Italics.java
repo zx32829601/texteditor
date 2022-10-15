@@ -7,10 +7,10 @@ import java.awt.event.ActionListener;
 /**
  * @author zx328
  */
-public class FontEdit implements ActionListener {
+public class Italics implements ActionListener {
     JTextPane textPane;
-    public FontEdit(JTextPane jtextPane){
-    textPane=jtextPane;
+    public Italics(JTextPane jtextPane){
+        textPane=jtextPane;
     }
     public static final void setCharacterAttributes(JEditorPane editor,
                                                     AttributeSet attr, boolean replace) {
@@ -44,28 +44,15 @@ public class FontEdit implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String s=e.getActionCommand();
 
-        if(s.equals("藍色")){
-//            MutableAttributeSet blueAttr=new SimpleAttributeSet();
-//            StyleConstants.setForeground(blueAttr, Color.blue);
-//            setCharacterAttributes(textPane,blueAttr,false);
+        if(s.equals("italics")) {
             StyledEditorKit kit = getStyledEditorKit(textPane);
             MutableAttributeSet attr = kit.getInputAttributes();
-            boolean bold = (StyleConstants.isBold(attr)) ? false : true;
+            boolean italic = (StyleConstants.isItalic(attr)) ? false : true;
             SimpleAttributeSet sas = new SimpleAttributeSet();
-            StyleConstants.setBold(sas, bold);
+            StyleConstants.setItalic(sas, italic);
             setCharacterAttributes(textPane, sas, false);
-
-
-        }else if(s.equals("粉紅色")){
-            MutableAttributeSet yellowAttr=new SimpleAttributeSet();
-            StyleConstants.setForeground(yellowAttr,Color.pink);
-            setCharacterAttributes(textPane,yellowAttr,false);
-
-        }else if(s.equals("紅色")){
-            MutableAttributeSet redAttr=new SimpleAttributeSet();
-            StyleConstants.setForeground(redAttr,Color.red);
-            setCharacterAttributes(textPane,redAttr,false);
         }
+
 
 
     }
