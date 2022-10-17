@@ -18,7 +18,7 @@ public class UI extends JFrame implements ActionListener {
     JToolBar toolBar;
     JMenu menuFile, menuEdit, menuFind, menuAbout, menuColor, menuFont, menuModel;
     JButton newButton,undoButton,redoButton,boldButton,italicsButton,bottomlineButton;
-    JMenuItem openFile, saveFile, saveFileAs, cut, paste, copy, blue, red, pink, standard, microsoftBold, newDetail, normalModel, darkModel;
+    JMenuItem openFile, saveFile, saveFileAs, cut, paste, copy, blue, red, pink, standard, microsoftBold, newDetail, normalModel, darkModel , replace , FIND;
     final CustomTextPane textPane=new CustomTextPane(true);
 
     JLabel stateBar;
@@ -81,8 +81,22 @@ public class UI extends JFrame implements ActionListener {
 
 
         //menuFind
-        menuFind = new JMenu("尋找");
+        menuFind = new JMenu("功能");
+        FIND= new JMenuItem("尋找");
+        FIND.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e)
+            {
+                Find ff = new Find(textPane.getText());  //開啟視窗
+            }
+        });
+        replace = new JMenuItem("取代");
+        replace.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
+            }
+        });
+        menuFind.add(FIND);
 
         //menuAbout
         menuAbout = new JMenu("關於");
