@@ -7,18 +7,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
-
+import java.awt.EventQueue;
 /**
  * @author zx328
  */
 public class UI extends JFrame implements ActionListener {
 
-
+    JFrame jFrame;
     JMenuBar menuBar;
     JToolBar toolBar;
-    JMenu menuFile, menuEdit, menuFind, menuAbout, menuColor, menuFont;
+    JMenu menuFile, menuEdit, menuFind, menuAbout, menuColor, menuFont, menuModel;
     JButton newButton,undoButton,redoButton,boldButton,italicsButton,bottomlineButton;
-    JMenuItem openFile, saveFile, saveFileAs, cut, paste, copy, blue, red, pink, standard, microsoftBold, newDetail;
+    JMenuItem openFile, saveFile, saveFileAs, cut, paste, copy, blue, red, pink, standard, microsoftBold, newDetail, normalModel, darkModel;
     final CustomTextPane textPane=new CustomTextPane(true);
 
     JLabel stateBar;
@@ -45,7 +45,6 @@ public class UI extends JFrame implements ActionListener {
         //word-count-listener
 
     }
-
     private void setUpUIComponent() {
         setSize(640, 480);
         toolBar = new JToolBar();
@@ -136,12 +135,22 @@ public class UI extends JFrame implements ActionListener {
         bottomlineButton.setFont(new Font("bottomline",0,0));
         bottomlineButton.addActionListener(new Bottomline(textPane));
 
+        //深淺色背景
+        menuModel = new JMenu("背景模式");
+        normalModel = new JMenuItem("一般模式");
+        normalModel.addActionListener(new Window_change(this));
+        darkModel = new JMenuItem("深色模式");
+        menuModel.add(normalModel);
+        menuModel.add(darkModel);
+
+
         menuBar.add(menuFile);
         menuBar.add(menuEdit);
         menuBar.add(menuFind);
         menuBar.add(menuFont);
         menuBar.add(menuColor);
         menuBar.add(menuAbout);
+        menuBar.add(menuModel);
 
         //建立新檔
         newButton=new JButton(defineImageButton.newIcon);
@@ -173,7 +182,6 @@ public class UI extends JFrame implements ActionListener {
         setJMenuBar(menuBar);
         this.add(toolBar, BorderLayout.NORTH);
     }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
