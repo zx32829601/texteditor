@@ -140,6 +140,7 @@ public class UI extends JFrame implements ActionListener {
         normalModel = new JMenuItem("一般模式");
         normalModel.addActionListener(new Window_change(this));
         darkModel = new JMenuItem("深色模式");
+        darkModel.addActionListener(new Window_change(this));
         menuModel.add(normalModel);
         menuModel.add(darkModel);
 
