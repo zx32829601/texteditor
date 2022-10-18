@@ -18,4 +18,14 @@ public class DefineImageButton {
     Image bottomlineImage = new ImageIcon("assets/image/icons/bottomline.png").getImage();
     Image boImage = bottomlineImage.getScaledInstance(20,20,Image.SCALE_AREA_AVERAGING);
     ImageIcon bottomlineIcon = new ImageIcon(boImage);
+
+    Image listImage = new ImageIcon("assets/image/icons/list.png").getImage();
+    Image liImage = listImage.getScaledInstance(20,20,Image.SCALE_AREA_AVERAGING);
+
+    ImageIcon listIcon = new ImageIcon(liImage);
+
+    Image numberlistImage = new ImageIcon("assets/image/icons/number.png").getImage();
+    Image nlImage = numberlistImage.getScaledInstance(20,20,Image.SCALE_AREA_AVERAGING);
+
+    ImageIcon numberlistIcon = new ImageIcon(nlImage);
 }
