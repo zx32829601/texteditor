@@ -42,11 +42,11 @@ public class Align implements ActionListener {
             MutableAttributeSet leftalignattr = new SimpleAttributeSet();
             StyleConstants.setAlignment(leftalignattr, 0);
             setParagraphAttributes(textPane, leftalignattr, false);
-        } else if (s.equals("center") {
+        } else if (s.equals("center")) {
             MutableAttributeSet centerattr = new SimpleAttributeSet();
             StyleConstants.setAlignment(centerattr, 1);
             setParagraphAttributes(textPane, centerattr, false);
-        }else if (s.equals("rightalign") {
+        }else if (s.equals("rightalign")){
             MutableAttributeSet rightalignattr = new SimpleAttributeSet();
             StyleConstants.setAlignment(rightalignattr, 21);
             setParagraphAttributes(textPane, rightalignattr, false);
