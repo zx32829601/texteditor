@@ -18,13 +18,11 @@ public class UI extends JFrame implements ActionListener {
     JToolBar toolBar;
     JMenu menuFile, menuEdit, menuFind, menuAbout, menuColor, menuFont, menuModel;
     JButton newButton,undoButton,redoButton,boldButton,italicsButton,bottomlineButton;
-    JMenuItem openFile, saveFile, saveFileAs, cut, paste, copy, blue, red, pink, standard, microsoftBold, newDetail, normalModel, darkModel , replace , FIND;
+    JMenuItem openFile, saveFile, saveFileAs, cut, paste, copy, blue, red, pink, standard, microsoftBold, newDetail, normalModel, darkModel , replace , FIND,new_Windows;
     final CustomTextPane textPane=new CustomTextPane(true);
 
     JLabel stateBar;
     DefineImageButton defineImageButton = new DefineImageButton();
-
-
 
 
 
@@ -38,18 +36,16 @@ public class UI extends JFrame implements ActionListener {
         setVisible(true);
     }
 
-
     private void setUpEventListener() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         //word-count-listener
-
     }
     private void setUpUIComponent() {
         setSize(640, 480);
         toolBar = new JToolBar();
         menuBar = new JMenuBar();
         //menuFile
+
         menuFile = new JMenu("檔案");
 
         openFile = new JMenuItem("開啟舊檔");
@@ -64,11 +60,15 @@ public class UI extends JFrame implements ActionListener {
         saveFileAs.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F12, InputEvent.CTRL_DOWN_MASK));
         saveFileAs.addActionListener(new FileEditor(this));
 
+        //開啟新視窗
+        new_Windows = new JMenuItem("OpenNewWindows");
+        new_Windows.addActionListener (new NewFile(this));// 設置監聽
+
         menuFile.add(openFile);
         menuFile.addSeparator();
         menuFile.add(saveFile);
         menuFile.add(saveFileAs);
-
+        menuFile.add(new_Windows);
 
         //menuEdit
         menuEdit = new JMenu("編輯");
