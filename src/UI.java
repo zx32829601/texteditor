@@ -54,12 +54,15 @@ public class UI extends JFrame implements ActionListener {
 
         openFile = new JMenuItem("開啟舊檔");
         openFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_DOWN_MASK));
+        openFile.addActionListener(new FileEditor(this));
 
         saveFile = new JMenuItem("儲存檔案");
         saveFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK));
+        saveFile.addActionListener(new FileEditor(this));
 
         saveFileAs = new JMenuItem("另存新檔");
         saveFileAs.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F12, InputEvent.CTRL_DOWN_MASK));
+        saveFileAs.addActionListener(new FileEditor(this));
 
         menuFile.add(openFile);
         menuFile.addSeparator();
