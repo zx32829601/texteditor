@@ -74,10 +74,16 @@ public class UI extends JFrame implements ActionListener {
         menuEdit = new JMenu("編輯");
         cut = new JMenuItem("剪下");
         cut.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_DOWN_MASK));
+        cut.addActionListener(new TXTedit(this));
+
         copy = new JMenuItem("複製");
         copy.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_DOWN_MASK));
+        copy.addActionListener(new TXTedit(this));
+
         paste = new JMenuItem("貼上");
         paste.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, InputEvent.CTRL_DOWN_MASK));
+        paste.addActionListener(new TXTedit(this));
+
         menuEdit.add(cut);
         menuEdit.add(copy);
         menuEdit.add(paste);
