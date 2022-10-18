@@ -11,12 +11,13 @@ import java.awt.event.ActionListener;
  */
 public class UI extends JFrame implements ActionListener {
 
+    private static JTextArea area;
 
-     JMenuBar menuBar;
+    JMenuBar menuBar;
      JToolBar toolBar;
       JMenu menuFile,menuEdit,menuFind,menuAbout,menuColor;
      JButton newButton,undoButton,redoButton;
-     JMenuItem openFile,saveFile,saveFileAs,cut,paste,copy,blue,red,pink;
+     JMenuItem openFile,saveFile,saveFileAs,cut,paste,copy,blue,red,pink,new_Windows,new_Windows2;
 
      JLabel stateBar;
 
@@ -24,7 +25,7 @@ public class UI extends JFrame implements ActionListener {
     DefaultStyledDocument doc=new DefaultStyledDocument(sc);
     JTextPane textPane=new JTextPane(doc);
 
-
+    JTextArea textAreaOutput;
 
 
 
@@ -43,14 +44,13 @@ public class UI extends JFrame implements ActionListener {
         setUpUIComponent();
         setUpEventListener();
         setVisible(true);
-    }
 
+
+    }
 
     private void setUpEventListener() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         //word-count-listener
-
     }
 
     private void setUpUIComponent() {
@@ -62,11 +62,14 @@ public class UI extends JFrame implements ActionListener {
         openFile=new JMenuItem("開啟舊檔");
         saveFile=new JMenuItem("儲存檔案");
         saveFileAs=new JMenuItem("另存新檔");
+        new_Windows = new JMenuItem("OpenNewWindows");
+        new_Windows.addActionListener (new NewFile(this));// 設置監聽
+
         menuFile.add(openFile);
         menuFile.addSeparator();
         menuFile.add(saveFile);
         menuFile.add(saveFileAs);
-
+        menuFile.add(new_Windows);
 
         //menuEdit
         menuEdit=new JMenu("編輯");
@@ -144,15 +147,8 @@ public class UI extends JFrame implements ActionListener {
 
 
 
-
     @Override
     public void actionPerformed(ActionEvent e) {
-
-
-
-
-
-
 
     }
 }
