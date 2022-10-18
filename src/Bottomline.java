@@ -52,7 +52,14 @@ public class Bottomline implements ActionListener {
             StyleConstants.setUnderline(sas, underline);
             setCharacterAttributes(textPane, sas, false);
         }
-
+        if(s.equals("bold")) {
+            StyledEditorKit kit = getStyledEditorKit(textPane);
+            MutableAttributeSet attr = kit.getInputAttributes();
+            boolean bold = (StyleConstants.isBold(attr)) ? false : true;
+            SimpleAttributeSet sas = new SimpleAttributeSet();
+            StyleConstants.setBold(sas, bold);
+            setCharacterAttributes(textPane, sas, false);
+        }
 
 
     }

@@ -17,7 +17,7 @@ public class UI extends JFrame implements ActionListener {
     JMenuBar menuBar;
     JToolBar toolBar;
     JMenu menuFile, menuEdit, menuFind, menuAbout, menuColor, menuFont, menuModel;
-    JButton newButton,undoButton,redoButton,boldButton,italicsButton,bottomlineButton;
+    JButton newButton,undoButton,redoButton,boldButton,italicsButton,bottomlineButton,listButton,numberlistButton;
     JMenuItem openFile, saveFile, saveFileAs, cut, paste, copy, blue, red, pink, standard, microsoftBold, newDetail, normalModel, darkModel , replace , FIND,new_Windows;
     final CustomTextPane textPane=new CustomTextPane(true);
 
@@ -152,6 +152,20 @@ public class UI extends JFrame implements ActionListener {
         bottomlineButton.setFont(new Font("bottomline",0,0));
         bottomlineButton.addActionListener(new Bottomline(textPane));
 
+        //項目清單
+        listButton = new JButton(defineImageButton.listIcon);
+        listButton.setToolTipText("項目清單");
+        listButton.setText("list");
+        listButton.setFont(new Font("list",0,0));
+        listButton.addActionListener(new List(textPane));
+
+        //數字清單
+        numberlistButton = new JButton(defineImageButton.numberlistIcon);
+        numberlistButton.setToolTipText("數字清單");
+        numberlistButton.setText("numberlist");
+        numberlistButton.setFont(new Font("numberlist",0,0));
+        numberlistButton.addActionListener(new Numberlist(textPane));
+
         //深淺色背景
         menuModel = new JMenu("背景模式");
         normalModel = new JMenuItem("一般模式");
@@ -196,6 +210,8 @@ public class UI extends JFrame implements ActionListener {
         toolBar.add(boldButton);
         toolBar.add(italicsButton);
         toolBar.add(bottomlineButton);
+        toolBar.add(listButton);
+        toolBar.add(numberlistButton);
         toolBar.addSeparator();
         setJMenuBar(menuBar);
         this.add(toolBar, BorderLayout.NORTH);

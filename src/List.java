@@ -39,8 +39,14 @@ public class List implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String s=e.getActionCommand();
-        if(s.equals("list")) {
 
+        if(s.equals("bold")) {
+            StyledEditorKit kit = getStyledEditorKit(textPane);
+            MutableAttributeSet attr = kit.getInputAttributes();
+            boolean bold = (StyleConstants.isBold(attr)) ? false : true;
+            SimpleAttributeSet sas = new SimpleAttributeSet();
+            StyleConstants.setBold(sas, bold);
+            setCharacterAttributes(textPane, sas, false);
         }
 
 
