@@ -163,14 +163,26 @@ public class UI extends JFrame implements ActionListener {
         listButton.setToolTipText("項目清單");
         listButton.setText("list");
         listButton.setFont(new Font("list",0,0));
-        listButton.addActionListener(new List(textPane));
+        listButton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e)
+            {
+                List l = new List(textPane.getText());
+                textPane.setText(l.Changed_text());
+            }
+        });
 
         //數字清單
         numberlistButton = new JButton(defineImageButton.numberlistIcon);
         numberlistButton.setToolTipText("數字清單");
         numberlistButton.setText("numberlist");
         numberlistButton.setFont(new Font("numberlist",0,0));
-        numberlistButton.addActionListener(new Numberlist(textPane));
+        numberlistButton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e)
+            {
+                Numberlist nl = new Numberlist(textPane.getText());
+                textPane.setText(nl.Changed_text());
+            }
+        });
 
         //深淺色背景
         menuModel = new JMenu("背景模式");
