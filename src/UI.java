@@ -17,7 +17,7 @@ public class UI extends JFrame implements ActionListener {
     JMenuBar menuBar;
     JToolBar toolBar;
     JMenu menuFile,menuEdit,menuFind,menuAbout,menuColor;
-    JButton newButton,undoButton,redoButton;
+    JButton newButton,undoButton,redoButton,boldButton,italicsButton,bottomlineButton;
     JMenuItem openFile,saveFile,saveFileAs,cut,paste,copy,blue,red,pink;
 
     JLabel stateBar;
@@ -28,20 +28,15 @@ public class UI extends JFrame implements ActionListener {
 
 
 
+    DefineImageButton defineImageButton = new DefineImageButton();
+    AdjustFontSize adjustFontSize = new AdjustFontSize();
 
-
-    //定義圖片
-    Image image=new ImageIcon("src/icons/new.png").getImage();
-    Image nImage=image.getScaledInstance(20,20, Image.SCALE_AREA_AVERAGING);
-    ImageIcon newIcon=new ImageIcon(nImage);
-    Image undoImage=new ImageIcon("src/icons/undo.png").getImage();
-    Image uImage=undoImage.getScaledInstance(20,20,Image.SCALE_AREA_AVERAGING);
-    ImageIcon undoIcon=new ImageIcon(uImage);
 
 
 
     public UI(){
         super("新增文字檔案");
+        this.setIconImage(new ImageIcon("./assets/image/mainicon/nick.jpg").getImage());
         setUpUIComponent();
         setUpEventListener();
         setVisible(true);
@@ -116,10 +111,31 @@ public class UI extends JFrame implements ActionListener {
         menuBar.add(menuAbout);
 
         //建立新檔
-        newButton=new JButton(newIcon);
+        newButton=new JButton(defineImageButton.newIcon);
 
         //上一步
-        undoButton=new JButton(undoIcon);
+        undoButton=new JButton(defineImageButton.undoIcon);
+
+        //粗體
+        boldButton = new JButton(defineImageButton.boldIcon);
+        boldButton.setToolTipText("粗體");
+        boldButton.setText("bold");
+        boldButton.setFont(new Font("bold",0,0));
+        boldButton.addActionListener(new Bold(textPane));
+
+        //斜體
+        italicsButton = new JButton(defineImageButton.italicsIcon);
+        italicsButton.setToolTipText("斜體");
+        italicsButton.setText("italics");
+        italicsButton.setFont(new Font("italics",0,0));
+        italicsButton.addActionListener(new Italics(textPane));
+
+        //textUnderLine
+        bottomlineButton = new JButton(defineImageButton.bottomlineIcon);
+        bottomlineButton.setToolTipText("底線");
+        bottomlineButton.setText("bottomline");
+        bottomlineButton.setFont(new Font("bottomline",0,0));
+        bottomlineButton.addActionListener(new Bottomline(textPane));
 
         //文字編輯區
         textPane.setFont(new Font("細明體",Font.PLAIN,16));
@@ -145,6 +161,10 @@ public class UI extends JFrame implements ActionListener {
 
         toolBar.add(newButton);
         toolBar.add(undoButton);
+        toolBar.add(boldButton);
+        toolBar.add(italicsButton);
+        toolBar.add(bottomlineButton);
+        toolBar.add(adjustFontSize.comboBox);
         toolBar.addSeparator();
         setJMenuBar(menuBar);
         this.add(toolBar, BorderLayout.NORTH);
