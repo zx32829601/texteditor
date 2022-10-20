@@ -13,21 +13,20 @@ public class UI extends JFrame implements ActionListener {
 
     private static JTextArea area;
 
-    JMenuBar menuBar;
-     JToolBar toolBar;
-      JMenu menuFile,menuEdit,menuFind,menuAbout,menuColor;
-     JButton newButton,undoButton,redoButton;
-     JMenuItem openFile,saveFile,saveFileAs,cut,paste,copy,blue,red,pink,new_Windows,new_Windows2;
 
-     JLabel stateBar;
+    JMenuBar menuBar;
+    JToolBar toolBar;
+    JMenu menuFile,menuEdit,menuFind,menuAbout,menuColor,menuText;
+    JButton newButton,undoButton,redoButton;
+    JMenuItem openFile,saveFile,saveFileAs,cut,paste,copy,blue,red,pink,new_Windows,ye,or,ge;
+
+    JLabel stateBar;
 
     StyleContext sc=new StyleContext();
     DefaultStyledDocument doc=new DefaultStyledDocument(sc);
     JTextPane textPane=new JTextPane(doc);
 
     JTextArea textAreaOutput;
-
-
 
     //定義圖片
     Image image=new ImageIcon("src/icons/new.png").getImage();
@@ -81,12 +80,31 @@ public class UI extends JFrame implements ActionListener {
         menuEdit.add(paste);
 
 
+
         //menuFind
         menuFind=new JMenu("尋找");
+
+        //提醒
+
+        menuText = new JMenu("醒目提示");
+        ye=new JMenuItem("黃色");
+        or=new JMenuItem("橘色");
+        ge=new JMenuItem("綠色");
+        menuText.add(ye);
+        menuText.add(or);
+        menuText.add(ge);
+        ye.addActionListener(new highlighter(textPane));
+        or.addActionListener(new highlighter(textPane));
+        ge.addActionListener(new highlighter(textPane));
+
 
 
         //menuAbout
         menuAbout=new JMenu("關於");
+
+
+
+
 
         //menuColor
         menuColor=new JMenu("字體顏色");
@@ -107,7 +125,9 @@ public class UI extends JFrame implements ActionListener {
         menuBar.add(menuEdit);
         menuBar.add(menuFind);
         menuBar.add(menuColor);
+        menuBar.add(menuText);
         menuBar.add(menuAbout);
+
 
         //建立新檔
         newButton=new JButton(newIcon);
@@ -132,11 +152,6 @@ public class UI extends JFrame implements ActionListener {
 
 
 
-
-
-
-
-
         toolBar.add(newButton);
         toolBar.add(undoButton);
         toolBar.addSeparator();
@@ -151,4 +166,5 @@ public class UI extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
     }
+
 }
