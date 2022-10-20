@@ -16,25 +16,22 @@ public class UI extends JFrame implements ActionListener {
 
     JMenuBar menuBar;
     JToolBar toolBar;
-    JMenu menuFile,menuEdit,menuFind,menuAbout,menuColor;
-    JButton newButton,undoButton,redoButton,boldButton,italicsButton,bottomlineButton;
-    JMenuItem openFile,saveFile,saveFileAs,cut,paste,copy,blue,red,pink;
+    JMenu menuFile, menuEdit, menuFind, menuAbout, menuColor, menuModel, menuFont;
+    JButton newButton, undoButton, redoButton, boldButton, italicsButton, bottomlineButton, listButton, numberlistButton;
+    JMenuItem openFile, saveFile, saveFileAs, cut, paste, copy, blue, red, pink, normalModel, darkModel, standard, microsoftBold, newDetail;
 
     JLabel stateBar;
 
-    StyleContext sc=new StyleContext();
-    DefaultStyledDocument doc=new DefaultStyledDocument(sc);
-    JTextPane textPane=new JTextPane(doc);
-
+    StyleContext sc = new StyleContext();
+    DefaultStyledDocument doc = new DefaultStyledDocument(sc);
+    JTextPane textPane = new JTextPane(doc);
 
 
     DefineImageButton defineImageButton = new DefineImageButton();
     AdjustFontSize adjustFontSize = new AdjustFontSize();
 
 
-
-
-    public UI(){
+    public UI() {
         super("新增文字檔案");
         this.setIconImage(new ImageIcon("./assets/image/mainicon/nick.jpg").getImage());
         setUpUIComponent();
@@ -52,20 +49,22 @@ public class UI extends JFrame implements ActionListener {
 
     private void setUpUIComponent() {
         setSize(640, 480);
-        toolBar=new JToolBar();
-        menuBar=new JMenuBar();
+        toolBar = new JToolBar();
+        menuBar = new JMenuBar();
         //menuFile
-        menuFile=new JMenu("檔案");
+        menuFile = new JMenu("檔案");
 
-         openFile = new JMenuItem("開啟舊檔");
+        openFile = new JMenuItem("開啟舊檔");
         openFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_DOWN_MASK));
+//        openFile.addActionListener(new FileEditor(this));
 
-         saveFile = new JMenuItem("儲存檔案");
+        saveFile = new JMenuItem("儲存檔案");
         saveFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK));
+//        saveFile.addActionListener(new FileEditor(this));
 
-         saveFileAs = new JMenuItem("另存新檔");
+        saveFileAs = new JMenuItem("另存新檔");
         saveFileAs.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F12, InputEvent.CTRL_DOWN_MASK));
-
+//        saveFileAs.addActionListener(new FileEditor(this));
         menuFile.add(openFile);
         menuFile.addSeparator();
         menuFile.add(saveFile);
@@ -73,27 +72,27 @@ public class UI extends JFrame implements ActionListener {
 
 
         //menuEdit
-        menuEdit=new JMenu("編輯");
-        cut=new JMenuItem("剪下");
-        copy=new JMenuItem("複製");
-        paste=new JMenuItem("貼上");
+        menuEdit = new JMenu("編輯");
+        cut = new JMenuItem("剪下");
+        copy = new JMenuItem("複製");
+        paste = new JMenuItem("貼上");
         menuEdit.add(cut);
         menuEdit.add(copy);
         menuEdit.add(paste);
 
 
         //menuFind
-        menuFind=new JMenu("尋找");
+        menuFind = new JMenu("尋找");
 
 
         //menuAbout
-        menuAbout=new JMenu("關於");
+        menuAbout = new JMenu("關於");
 
         //menuColor
-        menuColor=new JMenu("字體顏色");
-        blue=new JMenuItem("藍色");
-        red=new JMenuItem("紅色");
-        pink=new JMenuItem("粉紅色");
+        menuColor = new JMenu("字體顏色");
+        blue = new JMenuItem("藍色");
+        red = new JMenuItem("紅色");
+        pink = new JMenuItem("粉紅色");
         blue.addActionListener(new FontEdit(textPane));
         red.addActionListener(new FontEdit(textPane));
         pink.addActionListener(new FontEdit(textPane));
@@ -102,61 +101,102 @@ public class UI extends JFrame implements ActionListener {
         menuColor.add(pink);
 
 
+        menuFont = new JMenu("字體");
 
+        standard = new JMenuItem("標楷體");
+        standard.addActionListener(new FontEdit(textPane));
+        menuFont.add(standard);
 
-        menuBar.add(menuFile);
-        menuBar.add(menuEdit);
-        menuBar.add(menuFind);
-        menuBar.add(menuColor);
-        menuBar.add(menuAbout);
+        microsoftBold = new JMenuItem("微軟正黑體");
+        microsoftBold.addActionListener(new FontEdit(textPane));
+        menuFont.add(microsoftBold);
+
+        newDetail = new JMenuItem("新細明體");
+        newDetail.addActionListener(new FontEdit(textPane));
+        menuFont.add(newDetail);
 
         //建立新檔
-        newButton=new JButton(defineImageButton.newIcon);
+        newButton = new JButton(defineImageButton.newIcon);
 
         //上一步
-        undoButton=new JButton(defineImageButton.undoIcon);
+        undoButton = new JButton(defineImageButton.undoIcon);
 
         //粗體
         boldButton = new JButton(defineImageButton.boldIcon);
         boldButton.setToolTipText("粗體");
         boldButton.setText("bold");
-        boldButton.setFont(new Font("bold",0,0));
+        boldButton.setFont(new Font("bold", 0, 0));
         boldButton.addActionListener(new Bold(textPane));
 
         //斜體
         italicsButton = new JButton(defineImageButton.italicsIcon);
         italicsButton.setToolTipText("斜體");
         italicsButton.setText("italics");
-        italicsButton.setFont(new Font("italics",0,0));
+        italicsButton.setFont(new Font("italics", 0, 0));
         italicsButton.addActionListener(new Italics(textPane));
 
         //textUnderLine
         bottomlineButton = new JButton(defineImageButton.bottomlineIcon);
         bottomlineButton.setToolTipText("底線");
         bottomlineButton.setText("bottomline");
-        bottomlineButton.setFont(new Font("bottomline",0,0));
+        bottomlineButton.setFont(new Font("bottomline", 0, 0));
         bottomlineButton.addActionListener(new Bottomline(textPane));
 
+
+        //項目清單
+        listButton = new JButton(defineImageButton.listIcon);
+        listButton.setToolTipText("項目清單");
+        listButton.setText("list");
+        listButton.setFont(new Font("list", 0, 0));
+        listButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                List l = new List(textPane.getText());
+                textPane.setText(l.Changed_text());
+            }
+        });
+
+        //數字清單
+        numberlistButton = new JButton(defineImageButton.numberlistIcon);
+        numberlistButton.setToolTipText("數字清單");
+        numberlistButton.setText("numberlist");
+        numberlistButton.setFont(new Font("numberlist", 0, 0));
+        numberlistButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Numberlist nl = new Numberlist(textPane.getText());
+                textPane.setText(nl.Changed_text());
+            }
+        });
+
+        //深淺色背景
+        menuModel = new JMenu("背景模式");
+        normalModel = new JMenuItem("一般模式");
+        normalModel.addActionListener(new Window_change(this));
+        darkModel = new JMenuItem("深色模式");
+        darkModel.addActionListener(new Window_change(this));
+        menuModel.add(normalModel);
+        menuModel.add(darkModel);
+
+
+        menuBar.add(menuFile);
+        menuBar.add(menuEdit);
+        menuBar.add(menuFind);
+        menuBar.add(menuFont);
+        menuBar.add(menuColor);
+        menuBar.add(menuAbout);
+        menuBar.add(menuModel);
         //文字編輯區
-        textPane.setFont(new Font("細明體",Font.PLAIN,16));
+        textPane.setFont(new Font("細明體", Font.PLAIN, 16));
 
 
-        JScrollPane panel=new JScrollPane(textPane,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        Container contentPane=getContentPane();
-        contentPane.add(panel,BorderLayout.CENTER);
+        JScrollPane panel = new JScrollPane(textPane, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        Container contentPane = getContentPane();
+        contentPane.add(panel, BorderLayout.CENTER);
 
         //顯示字數
-        stateBar=new JLabel("Characters:"+0);
+        stateBar = new JLabel("Characters:" + 0);
         stateBar.setHorizontalAlignment(SwingConstants.LEFT);
         textPane.getDocument().addDocumentListener(new WordCountListener(stateBar));
-        contentPane.add(stateBar,BorderLayout.SOUTH);
-
-
-
-
-
-
-
+        contentPane.add(stateBar, BorderLayout.SOUTH);
 
 
         toolBar.add(newButton);
@@ -171,16 +211,8 @@ public class UI extends JFrame implements ActionListener {
     }
 
 
-
-
-
     @Override
     public void actionPerformed(ActionEvent e) {
-
-
-
-
-
 
 
     }

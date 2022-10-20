@@ -3,47 +3,28 @@ import javax.swing.text.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Numberlist implements ActionListener {
-    JTextPane textPane;
-    public Numberlist(JTextPane jtextPane){
-        textPane=jtextPane;
+public class Numberlist extends JFrame {
+    StringBuffer Output = new StringBuffer();
+    public Numberlist(String input_text) {
+        JTextPane textPane = new JTextPane();
+        textPane.setText( "original text" );
+        StringBuffer doc = new StringBuffer();
+        String ip[];
+        ip = input_text.split("\n");
+        for(int i = 0;i<ip.length;i++){
+            doc.append(ip[i]);
+            String s = Integer.toString(i+1);
+            doc.insert(0,s+".");
+            Output.append(doc);
+            Output.append("\n");
+            doc.setLength(0);
+        }
     }
-    public static final void setCharacterAttributes(JEditorPane editor,
-                                                    AttributeSet attr, boolean replace) {
-        int p0 = editor.getSelectionStart();
-        int p1 = editor.getSelectionEnd();
-        if (p0 != p1) {
-            StyledDocument doc = getStyledDocument(editor);
-            doc.setCharacterAttributes(p0, p1 - p0, attr, replace);
-        }
-        StyledEditorKit k = getStyledEditorKit(editor);
-        MutableAttributeSet inputAttributes = k.getInputAttributes();
-        if (replace) {
-            inputAttributes.removeAttributes(inputAttributes);
-        }
-        inputAttributes.addAttributes(attr);
-    }protected static final StyledEditorKit getStyledEditorKit(JEditorPane e) {
-        EditorKit k = e.getEditorKit();
-        if (k instanceof StyledEditorKit) {
-            return (StyledEditorKit) k;
-        }
-        throw new IllegalArgumentException("EditorKit must be StyledEditorKit");
+    public void print(){
+        System.out.println(Output.toString());
     }
-    protected static final StyledDocument getStyledDocument(JEditorPane e) {
-        Document d = e.getDocument();
-        if (d instanceof StyledDocument) {
-            return (StyledDocument) d;
-        }
-        throw new IllegalArgumentException("document must be StyledDocument");
+    public String Changed_text(){
+        return Output.toString();
     }
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        String s=e.getActionCommand();
-        if(s.equals("numberlist")) {
 
-        }
-
-
-
-    }
 }

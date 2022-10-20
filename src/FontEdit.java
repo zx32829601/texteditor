@@ -59,6 +59,18 @@ public class FontEdit implements ActionListener {
             MutableAttributeSet redAttr=new SimpleAttributeSet();
             StyleConstants.setForeground(redAttr,Color.red);
             setCharacterAttributes(textPane,redAttr,false);
+        }else if(s.equals("標楷體")){
+            MutableAttributeSet standardAttr = new SimpleAttributeSet();
+            StyleConstants.setFontFamily(standardAttr,"標楷體");
+            setCharacterAttributes(textPane,standardAttr,false);
+        }else if(s.equals("微軟正黑體")){
+            MutableAttributeSet microsoftBoldAttr =new SimpleAttributeSet();
+            StyleConstants.setFontFamily(microsoftBoldAttr,"微軟正黑體");
+            setCharacterAttributes(textPane,microsoftBoldAttr,false);
+        }else if(s.equals("新細明體")){
+            MutableAttributeSet newDetailAttr =new SimpleAttributeSet();
+            StyleConstants.setFontFamily(newDetailAttr,"新細明體");
+            setCharacterAttributes(textPane,newDetailAttr,false);
         }
 
 
