@@ -195,18 +195,18 @@ public class UI extends JFrame implements ActionListener {
 //        bottomlineButton.addActionListener(new Bottomline(textPane));
         bottomline=new Bottomline(textPane);
 
-        //置中對齊
-        centerButton = new JButton(defineImageButton.centerIcon);
-        centerButton.setToolTipText("置中對齊");
-        centerButton.setText("center");
-        centerButton.setFont(new Font("center",0,0));
-        centerButton.addActionListener(new Align(textPane));
         //靠左對齊
         leftalignButton = new JButton(defineImageButton.leftalignIcon);
         leftalignButton.setToolTipText("靠左對齊");
         leftalignButton.setText("leftalign");
         leftalignButton.setFont(new Font("leftalign",0,0));
         leftalignButton.addActionListener(new Align(textPane));
+        //置中對齊
+        centerButton = new JButton(defineImageButton.centerIcon);
+        centerButton.setToolTipText("置中對齊");
+        centerButton.setText("center");
+        centerButton.setFont(new Font("center",0,0));
+        centerButton.addActionListener(new Align(textPane));
         //靠右對齊
         rightalignButton = new JButton(defineImageButton.rightalignIcon);
         rightalignButton.setToolTipText("靠右對齊");
@@ -308,8 +308,8 @@ public class UI extends JFrame implements ActionListener {
         toolBar.add(listButton);
         toolBar.add(numberlistButton);
         toolBar.add(adjustFontSize.comboBox);
-        toolBar.add(centerButton);
         toolBar.add(leftalignButton);
+        toolBar.add(centerButton);
         toolBar.add(rightalignButton);
         toolBar.addSeparator();
         setJMenuBar(menuBar);
