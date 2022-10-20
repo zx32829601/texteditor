@@ -29,15 +29,15 @@ public class DefineImageButton {
 
     ImageIcon numberlistIcon = new ImageIcon(nlImage);
 
-    Image centerImage = new ImageIcon("assets/image/icons/center.png").getImage();
-    Image cenImage = centerImage.getScaledInstance(20,20,Image.SCALE_AREA_AVERAGING);
-
-    ImageIcon centerIcon = new ImageIcon(cenImage);
 
     Image leftalignImage = new ImageIcon("assets/image/icons/leftalign.png").getImage();
     Image leImage = leftalignImage.getScaledInstance(20,20,Image.SCALE_AREA_AVERAGING);
 
     ImageIcon leftalignIcon = new ImageIcon(leImage);
+    Image centerImage = new ImageIcon("assets/image/icons/center.png").getImage();
+    Image cenImage = centerImage.getScaledInstance(20,20,Image.SCALE_AREA_AVERAGING);
+
+    ImageIcon centerIcon = new ImageIcon(cenImage);
 
     Image rightalignImage = new ImageIcon("assets/image/icons/rightalign.png").getImage();
     Image riImage = rightalignImage.getScaledInstance(20,20,Image.SCALE_AREA_AVERAGING);
