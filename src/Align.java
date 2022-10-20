@@ -5,9 +5,34 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 public class Align implements ActionListener {
     JTextPane textPane;
+    static JButton leftalignButton,centerButton,rightalignButton;
+    DefineImageButton defineImageButton;
 
     public Align(JTextPane jtextPane) {
         textPane = jtextPane;
+        defineImageButton=new DefineImageButton();
+        createButton();
+
+    }
+    public void createButton(){
+        leftalignButton = new JButton(defineImageButton.leftalignIcon);
+        leftalignButton.setToolTipText("靠左對齊");
+        leftalignButton.setText("leftalign");
+        leftalignButton.setFont(new Font("leftalign", 0, 0));
+        leftalignButton.addActionListener(this);
+
+        centerButton = new JButton(defineImageButton.centerIcon);
+        centerButton.setToolTipText("置中對齊");
+        centerButton.setText("center");
+        centerButton.setFont(new Font("center",0,0));
+        centerButton.addActionListener(this);
+
+        rightalignButton = new JButton(defineImageButton.rightalignIcon);
+        rightalignButton.setToolTipText("靠右對齊");
+        rightalignButton.setText("rightalign");
+        rightalignButton.setFont(new Font("rightalign", 0, 0));
+        rightalignButton.addActionListener(this);
+
     }
 
     public static final void setParagraphAttributes(JEditorPane editor,

@@ -26,9 +26,6 @@ public class FileEditor implements ActionListener {
         saveFileAs.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F12, InputEvent.CTRL_DOWN_MASK));
         saveFileAs.addActionListener(this);
 
-        new_Windows = new JMenuItem("OpenNewWindows");
-        new_Windows.addActionListener(this);
-
 
     }
 

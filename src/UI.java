@@ -1,6 +1,4 @@
 import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.text.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -41,6 +39,15 @@ public class UI extends JFrame implements ActionListener {
 
     FileEditor fileEditor;
 
+    FontEdit fontEdit;
+
+    Align align;
+    TXTedit txTedit;
+
+    Highlighter highlighter;
+
+    NewFile newFile;
+
 
     public UI() {
         super("新增文字檔案");
@@ -66,21 +73,20 @@ public class UI extends JFrame implements ActionListener {
         menuFile = new JMenu("檔案");
 
         fileEditor=new FileEditor(this);
+        newFile=new NewFile(this);
         menuFile.add(fileEditor.openFile);
         menuFile.addSeparator();
         menuFile.add(fileEditor.saveFile);
         menuFile.add(fileEditor.saveFileAs);
-        menuFile.add(fileEditor.new_Windows);
+        menuFile.add(newFile.new_Windows);
 
 
         //menuEdit
         menuEdit = new JMenu("編輯");
-        cut = new JMenuItem("剪下");
-        copy = new JMenuItem("複製");
-        paste = new JMenuItem("貼上");
-        menuEdit.add(cut);
-        menuEdit.add(copy);
-        menuEdit.add(paste);
+        txTedit=new TXTedit(this);
+        menuEdit.add(txTedit.cut);
+        menuEdit.add(txTedit.copy);
+        menuEdit.add(txTedit.paste);
 
 
         //menuFind
@@ -118,15 +124,11 @@ public class UI extends JFrame implements ActionListener {
         //提醒
 
         menuText = new JMenu("醒目提示");
-        ye = new JMenuItem("黃色");
-        or = new JMenuItem("橘色");
-        ge = new JMenuItem("綠色");
-        menuText.add(ye);
-        menuText.add(or);
-        menuText.add(ge);
-        ye.addActionListener(new highlighter(textPane));
-        or.addActionListener(new highlighter(textPane));
-        ge.addActionListener(new highlighter(textPane));
+        highlighter=new Highlighter(textPane);
+        menuText.add(highlighter.yellow);
+        menuText.add(highlighter.orange);
+        menuText.add(highlighter.green);
+
 
 
         //menuAbout
@@ -135,30 +137,16 @@ public class UI extends JFrame implements ActionListener {
 
         //menuColor
         menuColor = new JMenu("字體顏色");
-        blue = new JMenuItem("藍色");
-        red = new JMenuItem("紅色");
-        pink = new JMenuItem("粉紅色");
-        blue.addActionListener(new FontEdit(textPane));
-        red.addActionListener(new FontEdit(textPane));
-        pink.addActionListener(new FontEdit(textPane));
-        menuColor.add(blue);
-        menuColor.add(red);
-        menuColor.add(pink);
+        fontEdit=new FontEdit(textPane);
+        menuColor.add(fontEdit.blue);
+        menuColor.add(fontEdit.red);
+        menuColor.add(fontEdit.pink);
 
 
         menuFont = new JMenu("字體");
-
-        standard = new JMenuItem("標楷體");
-        standard.addActionListener(new FontEdit(textPane));
-        menuFont.add(standard);
-
-        microsoftBold = new JMenuItem("微軟正黑體");
-        microsoftBold.addActionListener(new FontEdit(textPane));
-        menuFont.add(microsoftBold);
-
-        newDetail = new JMenuItem("新細明體");
-        newDetail.addActionListener(new FontEdit(textPane));
-        menuFont.add(newDetail);
+        menuFont.add(fontEdit.standard);
+        menuFont.add(fontEdit.microsoftBold);
+        menuFont.add(fontEdit.newDetail);
 
         //建立新檔
         newButton = new JButton(defineImageButton.newIcon);
@@ -175,25 +163,9 @@ public class UI extends JFrame implements ActionListener {
         //textUnderLine
         bottomline = new Bottomline(textPane);
 
+//        對齊
+        align=new Align(textPane);
 
-        //靠左對齊
-        leftalignButton = new JButton(defineImageButton.leftalignIcon);
-        leftalignButton.setToolTipText("靠左對齊");
-        leftalignButton.setText("leftalign");
-        leftalignButton.setFont(new Font("leftalign", 0, 0));
-        leftalignButton.addActionListener(new Align(textPane));
-        //置中對齊
-        centerButton = new JButton(defineImageButton.centerIcon);
-        centerButton.setToolTipText("置中對齊");
-        centerButton.setText("center");
-        centerButton.setFont(new Font("center",0,0));
-        centerButton.addActionListener(new Align(textPane));
-        //靠右對齊
-        rightalignButton = new JButton(defineImageButton.rightalignIcon);
-        rightalignButton.setToolTipText("靠右對齊");
-        rightalignButton.setText("rightalign");
-        rightalignButton.setFont(new Font("rightalign", 0, 0));
-        rightalignButton.addActionListener(new Align(textPane));
 
 
         //項目清單
@@ -284,9 +256,9 @@ public class UI extends JFrame implements ActionListener {
         toolBar.add(listButton);
         toolBar.add(numberlistButton);
         toolBar.add(adjustFontSize.comboBox);
-        toolBar.add(leftalignButton);
-        toolBar.add(centerButton);
-        toolBar.add(rightalignButton);
+        toolBar.add(align.leftalignButton);
+        toolBar.add(align.centerButton);
+        toolBar.add(align.rightalignButton);
         toolBar.addSeparator();
         setJMenuBar(menuBar);
         this.add(toolBar, BorderLayout.NORTH);

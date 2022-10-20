@@ -8,9 +8,26 @@ import java.awt.event.ActionListener;
  * @author zx328
  */
 public class FontEdit implements ActionListener {
+   static JMenuItem blue,red,pink, standard, microsoftBold, newDetail;
     JTextPane textPane;
     public FontEdit(JTextPane jtextPane){
     textPane=jtextPane;
+    createItem();
+    }
+    public void createItem(){
+        blue = new JMenuItem("藍色");
+        red = new JMenuItem("紅色");
+        pink = new JMenuItem("粉紅色");
+        blue.addActionListener(this);
+        red.addActionListener(this);
+        pink.addActionListener(this);
+
+        standard = new JMenuItem("標楷體");
+        standard.addActionListener(this);
+        microsoftBold = new JMenuItem("微軟正黑體");
+        microsoftBold.addActionListener(this);
+        newDetail = new JMenuItem("新細明體");
+        newDetail.addActionListener(this);
     }
     public static final void setCharacterAttributes(JEditorPane editor,
                                                     AttributeSet attr, boolean replace) {

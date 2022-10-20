@@ -2,21 +2,30 @@
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JTextPane;
+import javax.swing.*;
 import javax.swing.text.*;
 
-public  class highlighter implements ActionListener {
+public  class Highlighter implements ActionListener {
 
     JTextPane textPane;
+    JMenuItem yellow,orange,green;
 
-    public highlighter(JTextPane jtextPane) {
+    public Highlighter(JTextPane jtextPane) {
         textPane = jtextPane;
+        createItem();
     }
 
     StyleContext context = new StyleContext();
     StyledDocument document = new DefaultStyledDocument(context);
 
-
+public void createItem(){
+    yellow = new JMenuItem("黃色");
+    orange = new JMenuItem("橘色");
+    green = new JMenuItem("綠色");
+    yellow.addActionListener(this);
+    orange.addActionListener(this);
+    green.addActionListener(this);
+}
     public void actionPerformed(ActionEvent e) {
         String s = e.getActionCommand();
         if (s.equals("黃色")) {
