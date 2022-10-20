@@ -3,9 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class replace extends JFrame implements ActionListener{
-    JMenuItem FIND,replace;
-    JTextPane textPane;
+public class replace extends JFrame {
     StringBuffer output = new StringBuffer("");
     public replace(String input_text){
         super("取代");
@@ -43,13 +41,13 @@ public class replace extends JFrame implements ActionListener{
         confirm.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                int n = 0;
+            int n = 0;
                 while(n < ip.length){
                     output.append(ip[n].replace(jTextField_f.getText(),jTextField_t.getText()));
                     output.append("\n");
                     n++;
                 }
-                replace.super.dispose();
+            replace.super.dispose();
             }
         });
         pn.add(confirm);
@@ -68,10 +66,5 @@ public class replace extends JFrame implements ActionListener{
     }
     public String getop(){
         return output.toString();
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
     }
 }
