@@ -13,13 +13,13 @@ import java.awt.event.KeyEvent;
  */
 public class UI extends JFrame implements ActionListener {
 
-
+    private static JTextArea area;
     JMenuBar menuBar;
     JToolBar toolBar;
     JMenu menuFile, menuEdit, menuFind, menuAbout, menuColor, menuModel, menuFont, menuText;
     JButton newButton, undoButton, redoButton, boldButton, italicsButton, bottomlineButton, listButton, numberlistButton;
-    JMenuItem openFile, saveFile, saveFileAs, cut, paste, copy, blue, red, pink, normalModel, darkModel, standard, microsoftBold, newDetail, new_Windows, ye, or, ge;
-
+    JMenuItem openFile, saveFile, saveFileAs, cut, paste, copy, blue, red, pink, normalModel, darkModel, standard, microsoftBold, newDetail, new_Windows, ye, or, ge,replace,FIND;
+    JTextArea textAreaOutput;
 
     JLabel stateBar;
 
@@ -66,10 +66,14 @@ public class UI extends JFrame implements ActionListener {
         saveFileAs = new JMenuItem("另存新檔");
         saveFileAs.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F12, InputEvent.CTRL_DOWN_MASK));
 //        saveFileAs.addActionListener(new FileEditor(this));
+        //新視窗
+        new_Windows = new JMenuItem("OpenNewWindows");
+        new_Windows.addActionListener (new NewFile(this));
         menuFile.add(openFile);
         menuFile.addSeparator();
         menuFile.add(saveFile);
         menuFile.add(saveFileAs);
+        menuFile.add(new_Windows);
 
 
         //menuEdit
@@ -83,7 +87,22 @@ public class UI extends JFrame implements ActionListener {
 
 
         //menuFind
-        menuFind = new JMenu("尋找");
+        menuFind = new JMenu("功能");
+        FIND= new JMenuItem("尋找");
+        FIND.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e)
+            {
+                Find ff = new Find(textPane.getText());  //開啟視窗
+            }
+        });
+        replace = new JMenuItem("取代");
+        replace.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        menuFind.add(FIND);
 
         //提醒
 
