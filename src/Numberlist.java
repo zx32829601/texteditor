@@ -5,19 +5,33 @@ import java.awt.event.ActionListener;
 
 public class Numberlist extends JFrame {
     StringBuffer Output = new StringBuffer();
-    public Numberlist(String input_text) {
+    public Numberlist(String input_text,Boolean state) {
         JTextPane textPane = new JTextPane();
-        textPane.setText( "original text" );
         StringBuffer doc = new StringBuffer();
         String ip[];
-        ip = input_text.split("\n");
-        for(int i = 0;i<ip.length;i++){
-            doc.append(ip[i]);
-            String s = Integer.toString(i+1);
-            doc.insert(0,s+".");
-            Output.append(doc);
-            Output.append("\n");
-            doc.setLength(0);
+        if (state) {
+            ip = input_text.split("\n");
+            for(int i = 0;i<ip.length;i++){
+                doc.append(ip[i]);
+                String s = Integer.toString(i+1);
+                doc.insert(0,s+".");
+                Output.append(doc);
+                Output.append("\n");
+                doc.setLength(0);
+
+
+            }
+        }else {
+            ip = input_text.split("\n");
+            for(int i = 0;i<ip.length;i++) {
+                doc.append(ip[i]);
+                doc.deleteCharAt(0);
+                doc.deleteCharAt(0);
+                Output.append(doc);
+                Output.append("\n");
+                doc.setLength(0);
+            }
+
         }
     }
     public void print(){
