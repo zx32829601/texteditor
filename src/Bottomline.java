@@ -9,8 +9,20 @@ import java.awt.event.ActionListener;
  */
 public class Bottomline implements ActionListener {
     JTextPane textPane;
+    static JButton bottomlineButton;
+    DefineImageButton defineImageButton;
     public Bottomline(JTextPane jtextPane){
         textPane=jtextPane;
+        defineImageButton =new DefineImageButton();
+        createBottomLine();
+    }
+    public void createBottomLine(){
+        bottomlineButton = new JButton(defineImageButton.bottomlineIcon);
+        bottomlineButton.setToolTipText("底線");
+        bottomlineButton.setText("bottomline");
+        bottomlineButton.setFont(new Font("bottomline", 0, 0));
+        bottomlineButton.addActionListener(this);
+
     }
     public static final void setCharacterAttributes(JEditorPane editor,
                                                     AttributeSet attr, boolean replace) {

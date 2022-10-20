@@ -9,8 +9,19 @@ import java.awt.event.ActionListener;
  */
 public class Italics implements ActionListener {
     JTextPane textPane;
+    static JButton italicsButton;
+    DefineImageButton defineImageButton;
     public Italics(JTextPane jtextPane){
         textPane=jtextPane;
+        defineImageButton =new DefineImageButton();
+        createItalicsButton();
+    }
+    public void createItalicsButton(){
+        italicsButton = new JButton(defineImageButton.italicsIcon);
+        italicsButton.setToolTipText("斜體");
+        italicsButton.setText("italics");
+        italicsButton.setFont(new Font("italics", 0, 0));
+        italicsButton.addActionListener(this);
     }
     public static final void setCharacterAttributes(JEditorPane editor,
                                                     AttributeSet attr, boolean replace) {

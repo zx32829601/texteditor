@@ -1,3 +1,4 @@
+
 import javax.swing.*;
 import javax.swing.text.*;
 import java.awt.*;
@@ -9,8 +10,21 @@ import java.awt.event.ActionListener;
  */
 public class Bold implements ActionListener {
     JTextPane textPane;
+    static JButton boldButton;
+    DefineImageButton defineImageButton;
+    UI ui;
     public Bold(JTextPane jtextPane){
         textPane=jtextPane;
+        defineImageButton = new DefineImageButton();
+        createBoldButton();
+    }
+    public void createBoldButton(){
+        //粗體
+        boldButton = new JButton(defineImageButton.boldIcon);
+        boldButton.setToolTipText("粗體");
+        boldButton.setText("bold");
+        boldButton.setFont(new Font("bold",0,0));
+        boldButton.addActionListener(this);
     }
     public static final void setCharacterAttributes(JEditorPane editor,
                                                     AttributeSet attr, boolean replace) {
@@ -40,6 +54,7 @@ public class Bold implements ActionListener {
         }
         throw new IllegalArgumentException("document must be StyledDocument");
     }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         String s=e.getActionCommand();

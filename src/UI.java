@@ -35,6 +35,11 @@ public class UI extends JFrame implements ActionListener {
     DefineImageButton defineImageButton = new DefineImageButton();
     AdjustFontSize adjustFontSize = new AdjustFontSize();
 
+    //按鈕class
+    Bold bold;
+    Italics italics;
+    Bottomline bottomline;
+
 
     public UI() {
         super("新增文字檔案");
@@ -160,25 +165,28 @@ public class UI extends JFrame implements ActionListener {
         undoButton = new JButton(defineImageButton.undoIcon);
 
         //粗體
-        boldButton = new JButton(defineImageButton.boldIcon);
-        boldButton.setToolTipText("粗體");
-        boldButton.setText("bold");
-        boldButton.setFont(new Font("bold", 0, 0));
-        boldButton.addActionListener(new Bold(textPane));
+//        boldButton = new JButton(defineImageButton.boldIcon);
+//        boldButton.setToolTipText("粗體");
+//        boldButton.setText("bold");
+//        boldButton.setFont(new Font("bold", 0, 0));
+//        boldButton.addActionListener(new Bold(textPane));
+        bold=new Bold(textPane);
 
         //斜體
-        italicsButton = new JButton(defineImageButton.italicsIcon);
-        italicsButton.setToolTipText("斜體");
-        italicsButton.setText("italics");
-        italicsButton.setFont(new Font("italics", 0, 0));
-        italicsButton.addActionListener(new Italics(textPane));
+//        italicsButton = new JButton(defineImageButton.italicsIcon);
+//        italicsButton.setToolTipText("斜體");
+//        italicsButton.setText("italics");
+//        italicsButton.setFont(new Font("italics", 0, 0));
+//        italicsButton.addActionListener(new Italics(textPane));
+        italics=new Italics(textPane);
 
         //textUnderLine
-        bottomlineButton = new JButton(defineImageButton.bottomlineIcon);
-        bottomlineButton.setToolTipText("底線");
-        bottomlineButton.setText("bottomline");
-        bottomlineButton.setFont(new Font("bottomline", 0, 0));
-        bottomlineButton.addActionListener(new Bottomline(textPane));
+//        bottomlineButton = new JButton(defineImageButton.bottomlineIcon);
+//        bottomlineButton.setToolTipText("底線");
+//        bottomlineButton.setText("bottomline");
+//        bottomlineButton.setFont(new Font("bottomline", 0, 0));
+//        bottomlineButton.addActionListener(new Bottomline(textPane));
+        bottomline=new Bottomline(textPane);
 
 
         //項目清單
@@ -266,9 +274,9 @@ public class UI extends JFrame implements ActionListener {
 
         toolBar.add(newButton);
         toolBar.add(undoButton);
-        toolBar.add(boldButton);
-        toolBar.add(italicsButton);
-        toolBar.add(bottomlineButton);
+        toolBar.add(bold.boldButton);
+        toolBar.add(italics.italicsButton);
+        toolBar.add(bottomline.bottomlineButton);
         toolBar.add(listButton);
         toolBar.add(numberlistButton);
         toolBar.add(adjustFontSize.comboBox);
