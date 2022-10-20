@@ -25,8 +25,7 @@ public class Numberlist extends JFrame {
             ip = input_text.split("\n");
             for(int i = 0;i<ip.length;i++) {
                 doc.append(ip[i]);
-                doc.deleteCharAt(0);
-                doc.deleteCharAt(0);
+                doc.replace(0,2,"");
                 Output.append(doc);
                 Output.append("\n");
                 doc.setLength(0);
