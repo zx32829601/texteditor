@@ -9,8 +9,18 @@ import java.awt.event.ActionListener;
  */
 public class FontEdit implements ActionListener {
     JTextPane textPane;
+    JMenu menuColor,menuFont;
+    JMenuItem tmpMenuItem;
     public FontEdit(JTextPane jtextPane){
-    textPane=jtextPane;
+        textPane=jtextPane;
+        menuColor = new JMenu("字體顏色");
+        addColor("藍色");
+        addColor("紅色");
+        addColor("粉紅色");
+        menuFont = new JMenu("字體");
+        addFontStyle("標楷體");
+        addFontStyle("微軟正黑體");
+        addFontStyle("新細明體");
     }
     public static final void setCharacterAttributes(JEditorPane editor,
                                                     AttributeSet attr, boolean replace) {
@@ -39,6 +49,16 @@ public class FontEdit implements ActionListener {
             return (StyledDocument) d;
         }
         throw new IllegalArgumentException("document must be StyledDocument");
+    }
+    public void addColor(String newColor){
+        tmpMenuItem = new JMenuItem(newColor);
+        tmpMenuItem.addActionListener(this);
+        menuColor.add(tmpMenuItem);
+    }
+    public void addFontStyle(String newFontStyle){
+        tmpMenuItem = new JMenuItem(newFontStyle);
+        tmpMenuItem.addActionListener(this);
+        menuFont.add(tmpMenuItem);
     }
     @Override
     public void actionPerformed(ActionEvent e) {

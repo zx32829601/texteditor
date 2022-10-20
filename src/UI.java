@@ -1,6 +1,4 @@
 import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.text.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -18,9 +16,9 @@ public class UI extends JFrame implements ActionListener {
     JToolBar toolBar;
     JMenu menuFile, menuEdit, menuFind, menuAbout, menuColor, menuModel, menuFont, menuText;
 
-    JButton newButton, undoButton, redoButton, boldButton, italicsButton, bottomlineButton, listButton, numberlistButton,centerButton,leftalignButton,rightalignButton;
-    JMenuItem openFile, saveFile, saveFileAs, cut, paste, copy, blue, red, pink, normalModel, darkModel, standard, microsoftBold, newDetail, new_Windows, ye, or, ge,replace,FIND;
-    JTextArea textAreaOutput;
+    JButton newButton, undoButton, listButton, numberlistButton;
+    JMenuItem cut, paste, copy, normalModel, darkModel;
+
 
     JLabel stateBar;
 
@@ -40,7 +38,10 @@ public class UI extends JFrame implements ActionListener {
     WordCountListener wordCountListener;
 
     FileEditor fileEditor;
-
+    Find find;
+    Replace replace;
+    FontEdit fontEdit;
+    Align align;
 
     public UI() {
         super("新增文字檔案");
@@ -62,9 +63,9 @@ public class UI extends JFrame implements ActionListener {
         setSize(640, 480);
         toolBar = new JToolBar();
         menuBar = new JMenuBar();
-        //menuFile
         menuFile = new JMenu("檔案");
 
+        //TODO-待修改
         fileEditor=new FileEditor(this);
         menuFile.add(fileEditor.openFile);
         menuFile.addSeparator();
@@ -72,7 +73,7 @@ public class UI extends JFrame implements ActionListener {
         menuFile.add(fileEditor.saveFileAs);
         menuFile.add(fileEditor.new_Windows);
 
-
+        //TODO-待修改
         //menuEdit
         menuEdit = new JMenu("編輯");
         cut = new JMenuItem("剪下");
@@ -82,83 +83,28 @@ public class UI extends JFrame implements ActionListener {
         menuEdit.add(copy);
         menuEdit.add(paste);
 
-
+        //TODO-待修改
         //menuFind
         menuFind = new JMenu("功能");
-        FIND = new JMenuItem("尋找");
-        FIND.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                Find ff = new Find(textPane.getText());  //開啟視窗
-            }
-        });
-        replace = new JMenuItem("取代");
-        replace.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                replace rp = new replace(textPane.getText());
+        find = new Find(textPane);
+        menuFind.add(Find.findText);
+        replace = new Replace(textPane);
+        menuFind.add(replace.replaceText);
 
-
-                rp.addWindowListener(new WindowAdapter() {
-                    @Override
-                    public void windowClosed(WindowEvent e) {
-                        super.windowClosing(e);
-                        textPane.setText(rp.getop());
-                    }
-                });
-
-
-
-            }
-
-        });
-
-        menuFind.add(FIND);
-        menuFind.add(replace);
-
+        //TODO-待修改
         //提醒
-
         menuText = new JMenu("醒目提示");
-        ye = new JMenuItem("黃色");
-        or = new JMenuItem("橘色");
-        ge = new JMenuItem("綠色");
-        menuText.add(ye);
-        menuText.add(or);
-        menuText.add(ge);
-        ye.addActionListener(new highlighter(textPane));
-        or.addActionListener(new highlighter(textPane));
-        ge.addActionListener(new highlighter(textPane));
-
+        menuText.add(new HighLighter(textPane).yellow);
+        menuText.add(new HighLighter(textPane).orange);
+        menuText.add(new HighLighter(textPane).green);
 
         //menuAbout
         menuAbout = new JMenu("關於");
 
-
-        //menuColor
-        menuColor = new JMenu("字體顏色");
-        blue = new JMenuItem("藍色");
-        red = new JMenuItem("紅色");
-        pink = new JMenuItem("粉紅色");
-        blue.addActionListener(new FontEdit(textPane));
-        red.addActionListener(new FontEdit(textPane));
-        pink.addActionListener(new FontEdit(textPane));
-        menuColor.add(blue);
-        menuColor.add(red);
-        menuColor.add(pink);
-
-
-        menuFont = new JMenu("字體");
-
-        standard = new JMenuItem("標楷體");
-        standard.addActionListener(new FontEdit(textPane));
-        menuFont.add(standard);
-
-        microsoftBold = new JMenuItem("微軟正黑體");
-        microsoftBold.addActionListener(new FontEdit(textPane));
-        menuFont.add(microsoftBold);
-
-        newDetail = new JMenuItem("新細明體");
-        newDetail.addActionListener(new FontEdit(textPane));
-        menuFont.add(newDetail);
+        //字體顏色、字體樣式
+        fontEdit = new FontEdit(textPane);
+        menuColor = fontEdit.menuColor;
+        menuFont = fontEdit.menuFont;
 
         //建立新檔
         newButton = new JButton(defineImageButton.newIcon);
@@ -175,26 +121,10 @@ public class UI extends JFrame implements ActionListener {
         //textUnderLine
         bottomline = new Bottomline(textPane);
 
-        //置中對齊
-        centerButton = new JButton(defineImageButton.centerIcon);
-        centerButton.setToolTipText("置中對齊");
-        centerButton.setText("center");
-        centerButton.setFont(new Font("center", 0, 0));
-        centerButton.addActionListener(new Align(textPane));
-        //靠左對齊
-        leftalignButton = new JButton(defineImageButton.leftalignIcon);
-        leftalignButton.setToolTipText("靠左對齊");
-        leftalignButton.setText("leftalign");
-        leftalignButton.setFont(new Font("leftalign", 0, 0));
-        leftalignButton.addActionListener(new Align(textPane));
-        //靠右對齊
-        rightalignButton = new JButton(defineImageButton.rightalignIcon);
-        rightalignButton.setToolTipText("靠右對齊");
-        rightalignButton.setText("rightalign");
-        rightalignButton.setFont(new Font("rightalign", 0, 0));
-        rightalignButton.addActionListener(new Align(textPane));
+        //對齊
+        align = new Align(textPane);
 
-
+        //TODO-等待全域變數的出現
         //項目清單
         listButton = new JButton(defineImageButton.listIcon);
         listButton.setToolTipText("項目清單");
@@ -215,6 +145,7 @@ public class UI extends JFrame implements ActionListener {
             }
         });
 
+        //TODO-等待全域變數的出現
         //數字清單
         numberlistButton = new JButton(defineImageButton.numberlistIcon);
         numberlistButton.setToolTipText("數字清單");
@@ -235,6 +166,7 @@ public class UI extends JFrame implements ActionListener {
             }
         });
 
+        //TODO-待修改
         //深淺色背景
         menuModel = new JMenu("背景模式");
         normalModel = new JMenuItem("一般模式");
@@ -283,9 +215,9 @@ public class UI extends JFrame implements ActionListener {
         toolBar.add(listButton);
         toolBar.add(numberlistButton);
         toolBar.add(adjustFontSize.comboBox);
-        toolBar.add(leftalignButton);
-        toolBar.add(centerButton);
-        toolBar.add(rightalignButton);
+        toolBar.add(align.leftAlignButton);
+        toolBar.add(align.centerButton);
+        toolBar.add(align.rightAlignButton);
         toolBar.addSeparator();
         setJMenuBar(menuBar);
         this.add(toolBar, BorderLayout.NORTH);
