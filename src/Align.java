@@ -48,7 +48,7 @@ public class Align implements ActionListener {
             setParagraphAttributes(textPane, centerattr, false);
         }else if (s.equals("rightalign")){
             MutableAttributeSet rightalignattr = new SimpleAttributeSet();
-            StyleConstants.setAlignment(rightalignattr, 21);
+            StyleConstants.setAlignment(rightalignattr, 2);
             setParagraphAttributes(textPane, rightalignattr, false);
         }
     }
