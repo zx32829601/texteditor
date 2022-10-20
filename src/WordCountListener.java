@@ -5,10 +5,9 @@ import javax.swing.text.Document;
 
 public class WordCountListener implements DocumentListener {
     JLabel stateBar;
+    public WordCountListener(JLabel jLabel){
 
-    public WordCountListener(JLabel jLabel) {
-
-        stateBar = jLabel;
+        stateBar=jLabel;
 
 
     }
@@ -27,14 +26,14 @@ public class WordCountListener implements DocumentListener {
     public void changedUpdate(DocumentEvent e) {
         recalculateWords(e);
     }
-
     public void recalculateWords(DocumentEvent e) {
-        Document document = e.getDocument();
-        int count = document.getLength();
+        Document document=e.getDocument();
+        int count=document.getLength();
 
 
         System.out.println(count);
-        stateBar.setText("Characters:" + count);
+        stateBar.setText("Characters:"+count);
+
 
 
     }
