@@ -21,7 +21,7 @@ public class UI extends JFrame implements ActionListener {
     JMenuBar menuBar;
     JToolBar toolBar;
     JMenu menuFile, menuEdit, menuFind, menuAbout, menuColor, menuModel, menuFont, menuText;
-    JButton newButton, undoButton, redoButton, boldButton, italicsButton, bottomlineButton, listButton, numberlistButton;
+    JButton newButton, undoButton, redoButton, boldButton, italicsButton, bottomlineButton, listButton, numberlistButton,centerButton,leftalignButton,rightalignButton;
     JMenuItem openFile, saveFile, saveFileAs, cut, paste, copy, blue, red, pink, normalModel, darkModel, standard, microsoftBold, newDetail, new_Windows, ye, or, ge,replace,FIND;
     JTextArea textAreaOutput;
 
@@ -188,6 +188,27 @@ public class UI extends JFrame implements ActionListener {
 //        bottomlineButton.addActionListener(new Bottomline(textPane));
         bottomline=new Bottomline(textPane);
 
+        //置中對齊
+        centerButton = new JButton(defineImageButton.centerIcon);
+        centerButton.setToolTipText("置中對齊");
+        centerButton.setText("center");
+        centerButton.setFont(new Font("center",0,0));
+        centerButton.addActionListener(new Align(textPane));
+        //靠左對齊
+        leftalignButton = new JButton(defineImageButton.leftalignIcon);
+        leftalignButton.setToolTipText("靠左對齊");
+        leftalignButton.setText("leftalign");
+        leftalignButton.setFont(new Font("leftalign",0,0));
+        leftalignButton.addActionListener(new Align(textPane));
+        //靠右對齊
+        rightalignButton = new JButton(defineImageButton.rightalignIcon);
+        rightalignButton.setToolTipText("靠右對齊");
+        rightalignButton.setText("rightalign");
+        rightalignButton.setFont(new Font("rightalign",0,0));
+        rightalignButton.addActionListener(new Align(textPane));
+
+
+
 
         //項目清單
         listButton = new JButton(defineImageButton.listIcon);
@@ -280,6 +301,9 @@ public class UI extends JFrame implements ActionListener {
         toolBar.add(listButton);
         toolBar.add(numberlistButton);
         toolBar.add(adjustFontSize.comboBox);
+        toolBar.add(centerButton);
+        toolBar.add(leftalignButton);
+        toolBar.add(rightalignButton);
         toolBar.addSeparator();
         setJMenuBar(menuBar);
         this.add(toolBar, BorderLayout.NORTH);
