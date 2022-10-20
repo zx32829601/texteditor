@@ -13,7 +13,7 @@ import java.awt.event.KeyEvent;
  */
 public class UI extends JFrame implements ActionListener {
 
-
+    boolean listState = true;
     JMenuBar menuBar;
     JToolBar toolBar;
     JMenu menuFile, menuEdit, menuFind, menuAbout, menuColor, menuModel, menuFont, menuText;
@@ -165,8 +165,16 @@ public class UI extends JFrame implements ActionListener {
         listButton.setFont(new Font("list", 0, 0));
         listButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                List l = new List(textPane.getText());
-                textPane.setText(l.Changed_text());
+                if(listState == true){
+                    List l = new List(textPane.getText(),listState);
+                    textPane.setText(l.Changed_text());
+                    listState = false;
+                }else{
+                    List l = new List(textPane.getText(),listState);
+                    textPane.setText(l.Changed_text());
+                    listState = true;
+                }
+
             }
         });
 
@@ -177,8 +185,16 @@ public class UI extends JFrame implements ActionListener {
         numberlistButton.setFont(new Font("numberlist", 0, 0));
         numberlistButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Numberlist nl = new Numberlist(textPane.getText());
-                textPane.setText(nl.Changed_text());
+                if(listState == true){
+                    Numberlist nl = new Numberlist(textPane.getText(),listState);
+                    textPane.setText(nl.Changed_text());
+                    listState = false;
+                }else{
+                    Numberlist l = new Numberlist(textPane.getText(),listState);
+                    textPane.setText(l.Changed_text());
+                    listState = true;
+                }
+
             }
         });
 
@@ -230,6 +246,8 @@ public class UI extends JFrame implements ActionListener {
         toolBar.add(boldButton);
         toolBar.add(italicsButton);
         toolBar.add(bottomlineButton);
+        toolBar.add(listButton);
+        toolBar.add(numberlistButton);
         toolBar.add(adjustFontSize.comboBox);
         toolBar.addSeparator();
         setJMenuBar(menuBar);
