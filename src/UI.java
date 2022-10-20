@@ -3,10 +3,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 
 /**
  * @author zx328
@@ -17,14 +14,13 @@ public class UI extends JFrame implements ActionListener {
     private static JTextArea area;
 
     boolean listState = true;
-
     JMenuBar menuBar;
     JToolBar toolBar;
     JMenu menuFile, menuEdit, menuFind, menuAbout, menuColor, menuModel, menuFont, menuText;
     JButton newButton, undoButton, redoButton, boldButton, italicsButton, bottomlineButton, listButton, numberlistButton,centerButton,leftalignButton,rightalignButton;
     JMenuItem openFile, saveFile, saveFileAs, cut, paste, copy, blue, red, pink, normalModel, darkModel, standard, microsoftBold, newDetail, new_Windows, ye, or, ge,replace,FIND;
     JTextArea textAreaOutput;
-
+    replace rp;
     JLabel stateBar;
 
     StyleContext sc = new StyleContext();
@@ -108,10 +104,21 @@ public class UI extends JFrame implements ActionListener {
         replace.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                replace rp = new replace(textPane.getText());
 
+                rp.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosed(WindowEvent e) {
+                        super.windowClosing(e);
+                        textPane.setText(rp.getop());
+                    }
+                });
             }
+
         });
+
         menuFind.add(FIND);
+        menuFind.add(replace);
 
         //提醒
 
