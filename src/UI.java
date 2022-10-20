@@ -17,11 +17,14 @@ public class UI extends JFrame implements ActionListener {
     JMenuBar menuBar;
     JToolBar toolBar;
     JMenu menuFile, menuEdit, menuFind, menuAbout, menuColor, menuModel, menuFont, menuText;
+    JMenu array[] = new JMenu[8];
     JButton newButton, undoButton, redoButton, boldButton, italicsButton, bottomlineButton, listButton, numberlistButton,centerButton,leftalignButton,rightalignButton;
     JMenuItem openFile, saveFile, saveFileAs, cut, paste, copy, blue, red, pink, normalModel, darkModel, standard, microsoftBold, newDetail, new_Windows, ye, or, ge,replace,FIND;
     JTextArea textAreaOutput;
     replace rp;
     JLabel stateBar;
+
+
 
     StyleContext sc = new StyleContext();
     DefaultStyledDocument doc = new DefaultStyledDocument(sc);
@@ -133,7 +136,6 @@ public class UI extends JFrame implements ActionListener {
         or.addActionListener(new highlighter(textPane));
         ge.addActionListener(new highlighter(textPane));
 
-
         //menuAbout
         menuAbout = new JMenu("關於");
 
@@ -194,6 +196,9 @@ public class UI extends JFrame implements ActionListener {
 //        bottomlineButton.setFont(new Font("bottomline", 0, 0));
 //        bottomlineButton.addActionListener(new Bottomline(textPane));
         bottomline=new Bottomline(textPane);
+
+        //背景模式
+        menuModel = new JMenu("背景模式");
 
         //置中對齊
         centerButton = new JButton(defineImageButton.centerIcon);
@@ -257,16 +262,6 @@ public class UI extends JFrame implements ActionListener {
             }
         });
 
-        //深淺色背景
-        menuModel = new JMenu("背景模式");
-        normalModel = new JMenuItem("一般模式");
-        normalModel.addActionListener(new Window_change(this));
-        darkModel = new JMenuItem("深色模式");
-        darkModel.addActionListener(new Window_change(this));
-        menuModel.add(normalModel);
-        menuModel.add(darkModel);
-
-
         menuBar.add(menuFile);
         menuBar.add(menuEdit);
         menuBar.add(menuFind);
@@ -274,7 +269,7 @@ public class UI extends JFrame implements ActionListener {
         menuBar.add(menuColor);
         menuBar.add(menuText);
         menuBar.add(menuAbout);
-        menuBar.add(menuModel);
+        menuBar.add(new Window_change(this).menuModel);
 
 
         //建立新檔
