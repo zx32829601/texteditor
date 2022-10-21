@@ -5,12 +5,12 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.text.*;
 
-public  class Highlighter implements ActionListener {
+public  class HighLighter implements ActionListener {
 
     JTextPane textPane;
     JMenuItem yellow,orange,green;
 
-    public Highlighter(JTextPane jtextPane) {
+    public HighLighter(JTextPane jtextPane) {
         textPane = jtextPane;
         createItem();
     }

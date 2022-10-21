@@ -2,10 +2,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
-public class replace extends JFrame {
+public class Replace extends JFrame {
     StringBuffer output = new StringBuffer("");
-    public replace(String input_text){
+    JTextPane textPane;
+    JMenuItem replaceText;
+    public Replace(JTextPane jTextPane){
+        textPane = jTextPane;
+        replaceText = new JMenuItem("取代");
+        addFunction();
+    }
+    public Replace(String input_text){
         super("取代");
         String ip[];
         ip = input_text.split("\n");
@@ -41,13 +50,13 @@ public class replace extends JFrame {
         confirm.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-            int n = 0;
+                int n = 0;
                 while(n < ip.length){
                     output.append(ip[n].replace(jTextField_f.getText(),jTextField_t.getText()));
                     output.append("\n");
                     n++;
                 }
-            replace.super.dispose();
+                Replace.super.dispose();
             }
         });
         pn.add(confirm);
@@ -59,10 +68,31 @@ public class replace extends JFrame {
         cancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                replace.super.dispose();
+                Replace.super.dispose();
             }
         });
         setContentPane(pn);
+    }
+    public void addFunction(){
+        replaceText.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Replace rp = new Replace(textPane.getText());
+
+
+                rp.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosed(WindowEvent e) {
+                        super.windowClosing(e);
+                        textPane.setText(rp.getop());
+                    }
+                });
+
+
+
+            }
+
+        });
     }
     public String getop(){
         return output.toString();

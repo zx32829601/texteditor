@@ -5,7 +5,13 @@ import java.awt.event.ActionListener;
 
 public class Find extends JFrame
 {
-    JTextPane main_textPane , target_textPane;
+    JTextPane main_textPane , target_textPane,textPane;
+    static JMenuItem findText;
+    public Find(JTextPane jTextPane){
+        findText = new JMenuItem("尋找");
+        textPane = jTextPane;
+        addFunction();
+    }
     public Find(String input_text){
         super("尋找");
         String ip[];
@@ -78,5 +84,12 @@ public class Find extends JFrame
             }
         });
         setContentPane(pn);
+    }
+    public void addFunction(){
+        findText.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Find ff = new Find(textPane.getText());  //開啟視窗
+            }
+        });
     }
 }

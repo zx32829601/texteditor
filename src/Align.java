@@ -5,36 +5,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 public class Align implements ActionListener {
     JTextPane textPane;
-    static JButton leftalignButton,centerButton,rightalignButton;
+    JButton leftAlignButton, centerButton, rightAlignButton, tmpButton;
     DefineImageButton defineImageButton;
-
     public Align(JTextPane jtextPane) {
         textPane = jtextPane;
-        defineImageButton=new DefineImageButton();
-        createButton();
+        defineImageButton = new DefineImageButton();
+        leftAlignButton = createAlignButton("靠左對齊","leftAlign",defineImageButton.leftalignIcon);
+        centerButton = createAlignButton("置中對齊","center",defineImageButton.centerIcon);
+        rightAlignButton = createAlignButton("靠右對齊","rightAlign",defineImageButton.rightalignIcon);
 
     }
-    public void createButton(){
-        leftalignButton = new JButton(defineImageButton.leftalignIcon);
-        leftalignButton.setToolTipText("靠左對齊");
-        leftalignButton.setText("leftalign");
-        leftalignButton.setFont(new Font("leftalign", 0, 0));
-        leftalignButton.addActionListener(this);
-
-        centerButton = new JButton(defineImageButton.centerIcon);
-        centerButton.setToolTipText("置中對齊");
-        centerButton.setText("center");
-        centerButton.setFont(new Font("center",0,0));
-        centerButton.addActionListener(this);
-
-        rightalignButton = new JButton(defineImageButton.rightalignIcon);
-        rightalignButton.setToolTipText("靠右對齊");
-        rightalignButton.setText("rightalign");
-        rightalignButton.setFont(new Font("rightalign", 0, 0));
-        rightalignButton.addActionListener(this);
-
+    public JButton createAlignButton(String tipText, String functionName, ImageIcon photoName){
+        tmpButton = new JButton(photoName);
+        tmpButton.setToolTipText(tipText);
+        tmpButton.setText(functionName);
+        tmpButton.setFont(new Font(functionName, 0, 0));
+        tmpButton.addActionListener(this);
+        return tmpButton;
     }
-
     public static final void setParagraphAttributes(JEditorPane editor,
                                                     AttributeSet attr, boolean replace) {
         int p0 = editor.getSelectionStart();
@@ -63,7 +51,7 @@ public class Align implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String s = e.getActionCommand();
-        if(s.equals("leftalign")) {
+        if(s.equals("leftAlign")) {
             MutableAttributeSet leftalignattr = new SimpleAttributeSet();
             StyleConstants.setAlignment(leftalignattr, 0);
             setParagraphAttributes(textPane, leftalignattr, false);
@@ -71,7 +59,7 @@ public class Align implements ActionListener {
             MutableAttributeSet centerattr = new SimpleAttributeSet();
             StyleConstants.setAlignment(centerattr, 1);
             setParagraphAttributes(textPane, centerattr, false);
-        }else if (s.equals("rightalign")){
+        }else if (s.equals("rightAlign")){
             MutableAttributeSet rightalignattr = new SimpleAttributeSet();
             StyleConstants.setAlignment(rightalignattr, 2);
             setParagraphAttributes(textPane, rightalignattr, false);
