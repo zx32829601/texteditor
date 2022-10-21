@@ -9,12 +9,10 @@ import java.awt.event.*;
 public class UI extends JFrame implements ActionListener {
 
 
-    private static JTextArea area;
-
     boolean listState = true;
     JMenuBar menuBar;
     JToolBar toolBar;
-    JMenu menuFile, menuEdit, menuFind, menuAbout, menuColor, menuModel, menuFont, menuText;
+    JMenu menuFile, menuEdit, menuFind, menuAbout, menuColor, menuModel, menuFont, menuHighLighter;
 
     JButton newButton, undoButton, listButton, numberlistButton;
     JMenuItem cut, paste, copy, normalModel, darkModel;
@@ -42,8 +40,12 @@ public class UI extends JFrame implements ActionListener {
     Replace replace;
     FontEdit fontEdit;
     Align align;
-    NewFile newFile;
+
     Window_change window_change;
+
+    HighLighter highLighter;
+
+    TextEdit textEdit;
 
     public UI() {
         super("新增文字檔案");
@@ -67,24 +69,13 @@ public class UI extends JFrame implements ActionListener {
         menuBar = new JMenuBar();
         menuFile = new JMenu("檔案");
 
-        //TODO-待修改
-        fileEditor=new FileEditor(this);
-        newFile=new NewFile(this);
-        menuFile.add(fileEditor.openFile);
-        menuFile.addSeparator();
-        menuFile.add(fileEditor.saveFile);
-        menuFile.add(fileEditor.saveFileAs);
-        menuFile.add(newFile.new_Windows);
+        //把openNewWindow併進FileEditor了
+        fileEditor = new FileEditor(this);
+        menuFile=fileEditor.menuFile;
 
-        //TODO-待修改
         //menuEdit
-        menuEdit = new JMenu("編輯");
-        cut = new JMenuItem("剪下");
-        copy = new JMenuItem("複製");
-        paste = new JMenuItem("貼上");
-        menuEdit.add(cut);
-        menuEdit.add(copy);
-        menuEdit.add(paste);
+        textEdit=new TextEdit(this.textPane);
+        menuEdit=textEdit.menuEdit;
 
         //TODO-待修改
         //menuFind
@@ -94,12 +85,9 @@ public class UI extends JFrame implements ActionListener {
         replace = new Replace(textPane);
         menuFind.add(replace.replaceText);
 
-        //TODO-待修改
         //提醒
-        menuText = new JMenu("醒目提示");
-        menuText.add(new HighLighter(textPane).yellow);
-        menuText.add(new HighLighter(textPane).orange);
-        menuText.add(new HighLighter(textPane).green);
+        highLighter=new HighLighter(textPane);
+        menuHighLighter=highLighter.menuHighLighter;
 
         //menuAbout
         menuAbout = new JMenu("關於");
@@ -169,9 +157,9 @@ public class UI extends JFrame implements ActionListener {
             }
         });
 
-        //TODO-待修改
         //深淺色背景
-        window_change=new Window_change(this);
+        window_change = new Window_change(this);
+        menuModel=window_change.menuModel;
 
 
         menuBar.add(menuFile);
@@ -179,9 +167,9 @@ public class UI extends JFrame implements ActionListener {
         menuBar.add(menuFind);
         menuBar.add(menuFont);
         menuBar.add(menuColor);
-        menuBar.add(menuText);
+        menuBar.add(menuHighLighter);
         menuBar.add(menuAbout);
-        menuBar.add(window_change.menuModel);
+        menuBar.add(menuModel);
 
 
         //建立新檔
@@ -200,7 +188,7 @@ public class UI extends JFrame implements ActionListener {
         contentPane.add(panel, BorderLayout.CENTER);
 
         //顯示字數
-        wordCountListener=new WordCountListener(textPane);
+        wordCountListener = new WordCountListener(textPane);
         contentPane.add(wordCountListener.stateBar, BorderLayout.SOUTH);
 
 

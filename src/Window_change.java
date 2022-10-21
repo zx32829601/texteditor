@@ -35,7 +35,7 @@ public class Window_change implements ActionListener{
         this.co.menuAbout.setForeground(c);
         this.co.menuColor.setForeground(c);
         this.co.menuFont.setForeground(c);
-        this.co.menuText.setForeground(c);
+        this.co.menuHighLighter.setForeground(c);
         this.menuModel.setForeground(c);
     }
     @Override

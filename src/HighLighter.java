@@ -8,10 +8,13 @@ import javax.swing.text.*;
 public  class HighLighter implements ActionListener {
 
     JTextPane textPane;
+    JMenu menuHighLighter;
     JMenuItem yellow,orange,green;
+    JMenuItem tmpMenuItem;
 
     public HighLighter(JTextPane jtextPane) {
         textPane = jtextPane;
+        menuHighLighter = new JMenu("醒目提示");
         createItem();
     }
 
@@ -19,13 +22,15 @@ public  class HighLighter implements ActionListener {
     StyledDocument document = new DefaultStyledDocument(context);
 
 public void createItem(){
-    yellow = new JMenuItem("黃色");
-    orange = new JMenuItem("橘色");
-    green = new JMenuItem("綠色");
-    yellow.addActionListener(this);
-    orange.addActionListener(this);
-    green.addActionListener(this);
+    addColor("黃色");
+    addColor("橘色");
+    addColor("綠色");
 }
+    public void addColor(String newColor){
+        tmpMenuItem = new JMenuItem(newColor);
+        tmpMenuItem.addActionListener(this);
+        menuHighLighter.add(tmpMenuItem);
+    }
     public void actionPerformed(ActionEvent e) {
         String s = e.getActionCommand();
         if (s.equals("黃色")) {
