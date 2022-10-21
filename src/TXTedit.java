@@ -5,8 +5,17 @@ import java.awt.event.ActionListener;
 public class TXTedit implements ActionListener {
     private UI u;
     private JPopupMenu popUpMenu;
+
+    static JMenuItem cut,copy,paste;
+
     public TXTedit(UI ui) {
         this.u = ui;
+        createItem();
+    }
+    public void createItem(){
+        cut = new JMenuItem("剪下");
+        copy = new JMenuItem("複製");
+        paste = new JMenuItem("貼上");
     }
     private void cut() {
         u.textPane.cut();

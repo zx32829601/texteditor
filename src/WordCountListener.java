@@ -4,11 +4,18 @@ import javax.swing.event.DocumentListener;
 import javax.swing.text.Document;
 
 public class WordCountListener implements DocumentListener {
-    JLabel stateBar;
-    public WordCountListener(JLabel jLabel){
+    JTextPane textPane;
+    static JLabel stateBar;
+    public WordCountListener(JTextPane textPane){
+    this.textPane=textPane;
+        createWordCount();
 
-        stateBar=jLabel;
 
+    }
+    public void createWordCount(){
+        stateBar = new JLabel("Characters:" + 0);
+        stateBar.setHorizontalAlignment(SwingConstants.LEFT);
+        textPane.getDocument().addDocumentListener(this);
 
     }
 
