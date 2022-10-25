@@ -37,15 +37,17 @@ public class UI extends JFrame implements ActionListener {
 
     FileEditor fileEditor;
     Find find;
-    Replace replace;
+    //    Replace replace;
     FontEdit fontEdit;
     Align align;
 
     Window_change window_change;
 
-    HighLighter highLighter;
+//    HighLighter highLighter;
 
     TextEdit textEdit;
+
+    Undo undo;
 
     public UI() {
         super("新增文字檔案");
@@ -71,23 +73,23 @@ public class UI extends JFrame implements ActionListener {
 
         //把openNewWindow併進FileEditor了
         fileEditor = new FileEditor(this);
-        menuFile=fileEditor.menuFile;
+        menuFile = fileEditor.menuFile;
 
         //menuEdit
-        textEdit=new TextEdit(this.textPane);
-        menuEdit=textEdit.menuEdit;
+        textEdit = new TextEdit(this.textPane);
+        menuEdit = textEdit.menuEdit;
 
         //TODO-待修改
         //menuFind
         menuFind = new JMenu("功能");
         find = new Find(textPane);
         menuFind.add(Find.findText);
-        replace = new Replace(textPane);
-        menuFind.add(replace.replaceText);
+//        replace = new Replace(textPane);
+//        menuFind.add(replace.replaceText);
 
         //提醒
-        highLighter=new HighLighter(textPane);
-        menuHighLighter=highLighter.menuHighLighter;
+//        highLighter = new HighLighter(textPane);
+//        menuHighLighter = highLighter.menuHighLighter;
 
         //menuAbout
         menuAbout = new JMenu("關於");
@@ -159,7 +161,7 @@ public class UI extends JFrame implements ActionListener {
 
         //深淺色背景
         window_change = new Window_change(this);
-        menuModel=window_change.menuModel;
+        menuModel = window_change.menuModel;
 
 
         menuBar.add(menuFile);
@@ -167,7 +169,7 @@ public class UI extends JFrame implements ActionListener {
         menuBar.add(menuFind);
         menuBar.add(menuFont);
         menuBar.add(menuColor);
-        menuBar.add(menuHighLighter);
+//        menuBar.add(menuHighLighter);
         menuBar.add(menuAbout);
         menuBar.add(menuModel);
 
@@ -176,7 +178,7 @@ public class UI extends JFrame implements ActionListener {
         newButton = new JButton(defineImageButton.newIcon);
 
         //上一步
-        undoButton = new JButton(defineImageButton.undoIcon);
+        undo = new Undo(textPane);
 
 
         //文字編輯區
@@ -193,7 +195,8 @@ public class UI extends JFrame implements ActionListener {
 
 
         toolBar.add(newButton);
-        toolBar.add(undoButton);
+        toolBar.add(undo.undoButton);
+        toolBar.add(undo.saveButton);
         toolBar.add(bold.boldButton);
         toolBar.add(italics.italicsButton);
         toolBar.add(bottomline.bottomlineButton);
@@ -211,7 +214,6 @@ public class UI extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
 
     }
 
