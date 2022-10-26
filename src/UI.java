@@ -40,6 +40,7 @@ public class UI extends JFrame implements ActionListener {
     Replace replace;
     FontEdit fontEdit;
     Align align;
+    Undo undo;
 
     Window_change window_change;
 
@@ -102,6 +103,7 @@ public class UI extends JFrame implements ActionListener {
 
         //上一步
         undoButton = new JButton(defineImageButton.undoIcon);
+        undo=new Undo(textPane);
 
         //粗體
         bold = new Bold(textPane);
@@ -193,7 +195,8 @@ public class UI extends JFrame implements ActionListener {
 
 
         toolBar.add(newButton);
-        toolBar.add(undoButton);
+        toolBar.add(undo.undoButton);
+        toolBar.add(undo.saveButton);
         toolBar.add(bold.boldButton);
         toolBar.add(italics.italicsButton);
         toolBar.add(bottomline.bottomlineButton);
