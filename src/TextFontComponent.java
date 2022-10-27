@@ -4,11 +4,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class TextFontComponent extends TextFont  {
+public class TextFontComponent extends TextFont implements ActionListener {
     JButton italicsButton,bottomlineButton,boldButton;
 
     public TextFontComponent(JTextPane textPane){
         this.textPane=textPane;
+        defineImageButton =new DefineImageButton();
         createButton();
     }
     public void createButton(){
