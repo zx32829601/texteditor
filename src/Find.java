@@ -3,17 +3,19 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Find extends JFrame
+public class Find extends JFrame implements Function
 {
-    JTextPane main_textPane , target_textPane,textPane;
-    static JMenuItem findText;
-    public Find(JTextPane jTextPane){
-        findText = new JMenuItem("尋找");
-        textPane = jTextPane;
-        addFunction();
+    JTextPane main_textPane , target_textPane;
+
+    @Override
+    public java.lang.reflect.Type accept(Fuc_visitor v) {
+        return v.visit(this);
     }
-    public Find(String input_text){
+    public Find(){
         super("尋找");
+    }
+    public void feature(String input_text){
+
         String ip[];
         ip = input_text.split("\n");
         setSize(250,300);
@@ -84,12 +86,5 @@ public class Find extends JFrame
             }
         });
         setContentPane(pn);
-    }
-    public void addFunction(){
-        findText.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                Find ff = new Find(textPane.getText());  //開啟視窗
-            }
-        });
     }
 }

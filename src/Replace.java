@@ -2,22 +2,21 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
-public class Replace extends JFrame {
-    StringBuffer output = new StringBuffer("");
-    JTextPane textPane;
-    JMenuItem replaceText;
-    public Replace(JTextPane jTextPane){
-        textPane = jTextPane;
-        replaceText = new JMenuItem("取代");
-        addFunction();
+public class Replace extends JFrame implements Function {
+    StringBuilder output = new StringBuilder("");
+    String message , input_text;
+    Fuc_visitor v;
+    @Override
+    public java.lang.reflect.Type accept(Fuc_visitor v) {
+        this.v = v;
+        return v.visit(this);
     }
-    public Replace(String input_text){
+    public Replace(){
         super("取代");
-        String ip[];
-        ip = input_text.split("\n");
+    }
+
+    public void feature(){
         setSize(250,300);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setVisible(true);
@@ -50,7 +49,19 @@ public class Replace extends JFrame {
         confirm.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
+                int count =0;
+                String ip[];
+                if(count == 0) {
+                    ip = input_text.split("\n");
+                    output.setLength(0);
+                }
+                else {
+                    ip = v.getText().split("\n");
+                    output.setLength(0);
+                    System.out.println("output=" + output.toString());
+                }
                 int n = 0;
+
                 while(n < ip.length){
                     output.append(ip[n].replace(jTextField_f.getText(),jTextField_t.getText()));
                     output.append("\n");
@@ -72,29 +83,13 @@ public class Replace extends JFrame {
             }
         });
         setContentPane(pn);
+
     }
-    public void addFunction(){
-        replaceText.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Replace rp = new Replace(textPane.getText());
-
-
-                rp.addWindowListener(new WindowAdapter() {
-                    @Override
-                    public void windowClosed(WindowEvent e) {
-                        super.windowClosing(e);
-                        textPane.setText(rp.getop());
-                    }
-                });
-
-
-
-            }
-
-        });
+    public void settext(String t){
+        this.input_text = t;
     }
     public String getop(){
+        System.out.println(output.toString());
         return output.toString();
     }
 }

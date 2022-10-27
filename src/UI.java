@@ -15,7 +15,7 @@ public class UI extends JFrame implements ActionListener {
     JMenu menuFile, menuEdit, menuFind, menuAbout, menuColor, menuModel, menuFont, menuHighLighter;
 
     JButton newButton, undoButton, listButton, numberlistButton;
-    JMenuItem cut, paste, copy, normalModel, darkModel;
+    JMenuItem cut, paste, copy, normalModel, darkModel,replace,FIND;
 
 
     JLabel stateBar;
@@ -36,8 +36,7 @@ public class UI extends JFrame implements ActionListener {
     WordCountListener wordCountListener;
 
     FileEditor fileEditor;
-    Find find;
-    Replace replace;
+
     FontEdit fontEdit;
     Align align;
     Undo undo;
@@ -47,6 +46,11 @@ public class UI extends JFrame implements ActionListener {
     HighLighter highLighter;
 
     TextEdit textEdit;
+
+    Find find = new Find();
+    Replace rp = new Replace();
+    Fuc_visitor visitor = new Fuc_visitor();
+    int count = 0;
 
     public UI() {
         super("新增文字檔案");
@@ -78,13 +82,42 @@ public class UI extends JFrame implements ActionListener {
         textEdit=new TextEdit(this.textPane);
         menuEdit=textEdit.menuEdit;
 
+
         //TODO-待修改
         //menuFind
         menuFind = new JMenu("功能");
-        find = new Find(textPane);
-        menuFind.add(Find.findText);
-        replace = new Replace(textPane);
-        menuFind.add(replace.replaceText);
+        FIND= new JMenuItem("尋找");
+        FIND.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e)
+            {
+                visitor.inputtext(textPane.getText());
+                find.accept(visitor);  //開啟視窗
+            }
+        });
+        replace = new JMenuItem("取代");
+        replace.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                if(count == 0)
+                    visitor.inputtext(textPane.getText());
+                else
+                    visitor.inputtext(rp.getop());
+                rp.accept(visitor);
+                count++;
+                rp.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosed(WindowEvent e) {
+                        super.windowClosing(e);
+                        textPane.setText(rp.getop());
+                    }
+                });
+            }
+
+        });
+
+        menuFind.add(FIND);
+        menuFind.add(replace);
+
 
         //提醒
         highLighter=new HighLighter(textPane);
