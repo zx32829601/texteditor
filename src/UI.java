@@ -161,7 +161,7 @@ public class UI extends JFrame implements ActionListener {
 
         //深淺色背景
         window_change = new Window_change(this);
-        menuModel=window_change.menuModel;
+        menuModel = window_change.menuModel;
 
 
         menuBar.add(menuFile);
