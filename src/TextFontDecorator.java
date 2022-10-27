@@ -1,12 +1,18 @@
+import org.w3c.dom.Text;
+
 import javax.swing.*;
 import javax.swing.text.*;
 import java.awt.event.ActionEvent;
 
-public class TextFontDecorator extends TextFont{
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
+abstract class TextFontDecorator extends TextFont{
+    TextFontComponent textFontComponent;
+    public TextFontDecorator(TextFontComponent textFontComponent){
+        this.textFontComponent=textFontComponent;
     }
+    public void actionPerformed(ActionEvent e){
+        textFontComponent.actionPerformed(e);
+    }
+
     public static final void setCharacterAttributes(JEditorPane editor,
                                                     AttributeSet attr, boolean replace) {
         int p0 = editor.getSelectionStart();

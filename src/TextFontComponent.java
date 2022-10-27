@@ -63,29 +63,9 @@ public class TextFontComponent extends TextFont implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String s=e.getActionCommand();
 
-        if(s.equals("bold")) {
-            StyledEditorKit kit = getStyledEditorKit(textPane);
-            MutableAttributeSet attr = kit.getInputAttributes();
-            boolean bold = (StyleConstants.isBold(attr)) ? false : true;
-            SimpleAttributeSet sas = new SimpleAttributeSet();
-            StyleConstants.setBold(sas, bold);
-            setCharacterAttributes(textPane, sas, false);
-        }else if(s.equals("bottomline")) {
-            StyledEditorKit kit = getStyledEditorKit(textPane);
-            MutableAttributeSet attr = kit.getInputAttributes();
-            boolean underline = (StyleConstants.isUnderline(attr)) ? false : true;
-            SimpleAttributeSet sas = new SimpleAttributeSet();
-            StyleConstants.setUnderline(sas, underline);
-            setCharacterAttributes(textPane, sas, false);
-        }else if(s.equals("italics")) {
-            StyledEditorKit kit = getStyledEditorKit(textPane);
-            MutableAttributeSet attr = kit.getInputAttributes();
-            boolean italic = (StyleConstants.isItalic(attr)) ? false : true;
-            SimpleAttributeSet sas = new SimpleAttributeSet();
-            StyleConstants.setItalic(sas, italic);
-            setCharacterAttributes(textPane, sas, false);
-        }
+        StyledEditorKit kit = getStyledEditorKit(textPane);
+        MutableAttributeSet attr = kit.getInputAttributes();
+
     }
 }

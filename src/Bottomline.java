@@ -9,23 +9,15 @@ import java.awt.event.ActionListener;
  */
 public class Bottomline extends TextFontDecorator{
 
-    public Bottomline(JTextPane jtextPane){
-        textPane=jtextPane;
-
-
+    public Bottomline(TextFontComponent textFontComponent){
+        super(textFontComponent);
     }
-
     @Override
     public void actionPerformed(ActionEvent e) {
-        String s=e.getActionCommand();
-
-        if(s.equals("bottomline")) {
-            StyledEditorKit kit = getStyledEditorKit(textPane);
-            MutableAttributeSet attr = kit.getInputAttributes();
-            boolean underline = (StyleConstants.isUnderline(attr)) ? false : true;
-            SimpleAttributeSet sas = new SimpleAttributeSet();
-            StyleConstants.setUnderline(sas, underline);
-            setCharacterAttributes(textPane, sas, false);
-        }
+        super.actionPerformed(e);
+        boolean underline = (StyleConstants.isUnderline(attr)) ? false : true;
+        SimpleAttributeSet sas = new SimpleAttributeSet();
+        StyleConstants.setUnderline(sas, underline);
+        setCharacterAttributes(textPane, sas, false);
     }
 }
