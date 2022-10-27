@@ -11,6 +11,8 @@ public class FontEdit implements ActionListener {
     JTextPane textPane;
     JMenu menuColor,menuFont;
     JMenuItem tmpMenuItem;
+    ReceiverCommand receiver;
+    InvokerCommand invoker;
     public FontEdit(JTextPane jtextPane){
         textPane=jtextPane;
         menuColor = new JMenu("字體顏色");
@@ -21,6 +23,9 @@ public class FontEdit implements ActionListener {
         addFontStyle("標楷體");
         addFontStyle("微軟正黑體");
         addFontStyle("新細明體");
+        receiver = new ReceiverCommand();
+        invoker = new InvokerCommand();
+        receiver.setTextPane(textPane);
     }
     public static final void setCharacterAttributes(JEditorPane editor,
                                                     AttributeSet attr, boolean replace) {
@@ -36,7 +41,8 @@ public class FontEdit implements ActionListener {
             inputAttributes.removeAttributes(inputAttributes);
         }
         inputAttributes.addAttributes(attr);
-    }protected static final StyledEditorKit getStyledEditorKit(JEditorPane e) {
+    }
+    protected static final StyledEditorKit getStyledEditorKit(JEditorPane e) {
         EditorKit k = e.getEditorKit();
         if (k instanceof StyledEditorKit) {
             return (StyledEditorKit) k;
@@ -65,32 +71,29 @@ public class FontEdit implements ActionListener {
         String s=e.getActionCommand();
 
         if(s.equals("藍色")){
-            MutableAttributeSet blueAttr=new SimpleAttributeSet();
-            StyleConstants.setForeground(blueAttr, Color.blue);
-            setCharacterAttributes(textPane,blueAttr,false);
-
-
+            Command blueFont = new BlueFontCommand(receiver);
+            invoker.addCommend(blueFont);
+            invoker.execute();
         }else if(s.equals("粉紅色")){
-            MutableAttributeSet yellowAttr=new SimpleAttributeSet();
-            StyleConstants.setForeground(yellowAttr,Color.pink);
-            setCharacterAttributes(textPane,yellowAttr,false);
-
+            Command pinkFont = new PinkFontCommand(receiver);
+            invoker.addCommend(pinkFont);
+            invoker.execute();
         }else if(s.equals("紅色")){
-            MutableAttributeSet redAttr=new SimpleAttributeSet();
-            StyleConstants.setForeground(redAttr,Color.red);
-            setCharacterAttributes(textPane,redAttr,false);
+            Command redFont = new RedFontCommand(receiver);
+            invoker.addCommend(redFont);
+            invoker.execute();
         }else if(s.equals("標楷體")){
-            MutableAttributeSet standardAttr = new SimpleAttributeSet();
-            StyleConstants.setFontFamily(standardAttr,"標楷體");
-            setCharacterAttributes(textPane,standardAttr,false);
+            Command fontStyleOne = new FontStyleOneCommand(receiver);
+            invoker.addCommend(fontStyleOne);
+            invoker.execute();
         }else if(s.equals("微軟正黑體")){
-            MutableAttributeSet microsoftBoldAttr =new SimpleAttributeSet();
-            StyleConstants.setFontFamily(microsoftBoldAttr,"微軟正黑體");
-            setCharacterAttributes(textPane,microsoftBoldAttr,false);
+            Command fontStyleTwo = new FontStyleTwoCommand(receiver);
+            invoker.addCommend(fontStyleTwo);
+            invoker.execute();
         }else if(s.equals("新細明體")){
-            MutableAttributeSet newDetailAttr =new SimpleAttributeSet();
-            StyleConstants.setFontFamily(newDetailAttr,"新細明體");
-            setCharacterAttributes(textPane,newDetailAttr,false);
+            Command fontStyleThree = new FontStyleThreeCommand(receiver);
+            invoker.addCommend(fontStyleThree);
+            invoker.execute();
         }
 
 

@@ -9,6 +9,8 @@ public class TextEdit implements ActionListener {
     private JTextPane textPane;
     JMenu menuEdit;
     JMenuItem tmpMenuItem;
+    ReceiverCommand receiver;
+    InvokerCommand invoker;
 
     public TextEdit(JTextPane textPane) {
         menuEdit=new JMenu("編輯");
@@ -16,6 +18,9 @@ public class TextEdit implements ActionListener {
         addItem("剪下");
         addItem("複製");
         addItem("貼上");
+        receiver = new ReceiverCommand();
+        invoker = new InvokerCommand();
+        receiver.setTextPane(textPane);
     }
     public void addItem(String newItem){
         tmpMenuItem = new JMenuItem(newItem);
@@ -34,28 +39,23 @@ public class TextEdit implements ActionListener {
 
     }
 
-    private void cut() {
-        textPane.cut();
 
-
-    }
-    private void copy() {
-        textPane.copy();
-    }
-    private void paste() {
-        textPane.paste();
-
-
-    }
 
     public void actionPerformed(ActionEvent e) {
+
         String s =e.getActionCommand();
         if(s.equals("剪下")){
-            cut();
+            Command cut = new CutCommand(receiver);
+            invoker.addCommend(cut);
+            invoker.execute();
         }else if(s.equals("複製")){
-            copy();
+            Command copy = new CopyCommand(receiver);
+            invoker.addCommend(copy);
+            invoker.execute();
         }else if(s.equals("貼上")){
-            paste();
+            Command paste = new PasteCommand(receiver);
+            invoker.addCommend(paste);
+            invoker.execute();
         }
     }
 
