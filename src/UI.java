@@ -29,9 +29,9 @@ public class UI extends JFrame implements ActionListener {
     AdjustFontSize adjustFontSize = new AdjustFontSize();
 
     //按鈕class
-    Bold bold;
-    Italics italics;
-    Bottomline bottomline;
+    TextFontComponent bold;
+    TextFontComponent italics;
+    TextFontComponent bottomline;
 
     WordCountListener wordCountListener;
 
@@ -139,13 +139,13 @@ public class UI extends JFrame implements ActionListener {
         undo=new Undo(textPane);
 
         //粗體
-        bold = new Bold(textPane);
+        bold = new TextFontComponent(textPane);
 
         //斜體
-        italics = new Italics(textPane);
+        italics = new TextFontComponent(textPane);
 
         //textUnderLine
-        bottomline = new Bottomline(textPane);
+        bottomline = new TextFontComponent(textPane);
 
         //對齊
         align = new Align(textPane);
