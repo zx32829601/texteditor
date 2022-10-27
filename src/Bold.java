@@ -12,6 +12,7 @@ public class Bold extends TextFontDecorator {
     public Bold(TextFontComponent textFontComponent){
         super(textFontComponent);
     }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         super.actionPerformed(e);

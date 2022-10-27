@@ -32,7 +32,7 @@ public class TextFontComponent extends TextFont implements ActionListener {
         boldButton.setFont(new Font("bold",0,0));
         boldButton.addActionListener(this);
     }
-    public static final void setCharacterAttributes(JEditorPane editor,
+    public static  void setCharacterAttributes(JEditorPane editor,
                                                     AttributeSet attr, boolean replace) {
         int p0 = editor.getSelectionStart();
         int p1 = editor.getSelectionEnd();
@@ -46,14 +46,14 @@ public class TextFontComponent extends TextFont implements ActionListener {
             inputAttributes.removeAttributes(inputAttributes);
         }
         inputAttributes.addAttributes(attr);
-    }protected static final StyledEditorKit getStyledEditorKit(JEditorPane e) {
+    }public static  StyledEditorKit getStyledEditorKit(JEditorPane e) {
         EditorKit k = e.getEditorKit();
         if (k instanceof StyledEditorKit) {
             return (StyledEditorKit) k;
         }
         throw new IllegalArgumentException("EditorKit must be StyledEditorKit");
     }
-    protected static final StyledDocument getStyledDocument(JEditorPane e) {
+    public static  StyledDocument getStyledDocument(JEditorPane e) {
         Document d = e.getDocument();
         if (d instanceof StyledDocument) {
             return (StyledDocument) d;
