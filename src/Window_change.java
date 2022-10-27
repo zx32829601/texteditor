@@ -23,32 +23,79 @@ public class Window_change implements ActionListener{
         menuModel.add(normalModel);
         menuModel.add(darkModel);
     }
-    public void setWindowsBackground(Color c){
-        this.co.textPane.setBackground(c);
-        this.co.menuBar.setBackground(c);
-    }
-    public void setTextColor(Color c){
-        this.co.textPane.setForeground(c);
-        this.co.menuFile.setForeground(c);
-        this.co.menuEdit.setForeground(c);
-        this.co.menuFind.setForeground(c);
-        this.co.menuAbout.setForeground(c);
-        this.co.menuColor.setForeground(c);
-        this.co.menuFont.setForeground(c);
-        this.co.menuHighLighter.setForeground(c);
-        this.menuModel.setForeground(c);
-    }
     @Override
     public void actionPerformed(ActionEvent e) {
+        ModelFactory m;
         String s = e.getActionCommand();
         if(s.equals("一般模式")){
-            setWindowsBackground(Color.white);
-            setTextColor(Color.black);
+            m = new NormalModel(this.co);
+            m.setWindowsBackground();
+            m.setTextColor();
         }else if(s.equals("深色模式")){
-            setWindowsBackground(Color.darkGray);
-            setTextColor(Color.white);
+            m = new DarkModel(this.co);
+            m.setWindowsBackground();
+            m.setTextColor();
         }
 
     }
 }
 
+abstract class ModelFactory{
+    public abstract void setWindowsBackground();
+    public abstract void setTextColor();
+}
+
+class NormalModel extends ModelFactory {
+    UI ui;
+    public NormalModel(UI ui){
+        this.ui = ui;
+    }
+    @Override
+    public void setWindowsBackground() {
+        Color c = Color.white;
+        ui.textPane.setBackground(c);
+        ui.menuBar.setBackground(c);
+    }
+
+    @Override
+    public void setTextColor() {
+        Color c = Color.black;
+        ui.textPane.setForeground(c);
+        ui.menuFile.setForeground(c);
+        ui.menuEdit.setForeground(c);
+        ui.menuFind.setForeground(c);
+        ui.menuAbout.setForeground(c);
+        ui.menuColor.setForeground(c);
+        ui.menuFont.setForeground(c);
+        ui.menuHighLighter.setForeground(c);
+        ui.menuModel.setForeground(c);
+    }
+}
+
+class DarkModel extends ModelFactory {
+    UI ui;
+    public DarkModel(UI ui) {
+        this.ui = ui;
+    }
+
+    @Override
+    public void setWindowsBackground() {
+        Color c = Color.darkGray;
+        ui.textPane.setBackground(c);
+        ui.menuBar.setBackground(c);
+    }
+
+    @Override
+    public void setTextColor() {
+        Color c = Color.white;
+        ui.textPane.setForeground(c);
+        ui.menuFile.setForeground(c);
+        ui.menuEdit.setForeground(c);
+        ui.menuFind.setForeground(c);
+        ui.menuAbout.setForeground(c);
+        ui.menuColor.setForeground(c);
+        ui.menuFont.setForeground(c);
+        ui.menuHighLighter.setForeground(c);
+        ui.menuModel.setForeground(c);
+    }
+}
