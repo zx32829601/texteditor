@@ -1,7 +1,6 @@
 import javax.swing.*;
 import javax.swing.text.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 
 abstract class TextFont  {
     JTextPane textPane;
