@@ -1,7 +1,6 @@
 import javax.swing.*;
 import javax.swing.text.*;
 
-
 public class TextFontComponent extends TextFont  {
 
     public TextFontComponent(JTextPane textPane){
@@ -14,5 +13,4 @@ public class TextFontComponent extends TextFont  {
         MutableAttributeSet attr = kit.getInputAttributes();
         return attr;
     }
-
 }

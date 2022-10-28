@@ -1,7 +1,6 @@
 import javax.swing.*;
 import javax.swing.text.*;
 
-
 abstract class TextFont  {
     JTextPane textPane;
     DefineImageButton defineImageButton;
