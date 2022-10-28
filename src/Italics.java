@@ -1,23 +1,20 @@
-import javax.swing.*;
 import javax.swing.text.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * @author zx328
  */
-public class Italics extends TextFontDecorator  {
+public class Italics extends TextFontDecorator {
 
-    public Italics(TextFontComponent textFontComponent){
+    public Italics(TextFontComponent textFontComponent) {
         super(textFontComponent);
     }
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        super.actionPerformed(e);
-        boolean italic = (StyleConstants.isItalic(attr)) ? false : true;
+
+    public MutableAttributeSet changeStyle() {
+        boolean italic = (StyleConstants.isItalic(super.changeStyle())) ? false : true;
         SimpleAttributeSet sas = new SimpleAttributeSet();
         StyleConstants.setItalic(sas, italic);
-        setCharacterAttributes(textPane, sas, false);
+        setCharacterAttributes(super.textFontComponent.textPane, sas, false);
+        return null;
     }
 }

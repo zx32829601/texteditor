@@ -1,23 +1,20 @@
-import javax.swing.*;
 import javax.swing.text.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * @author zx328
  */
-public class Bottomline extends TextFontDecorator{
+public class Bottomline extends TextFontDecorator {
 
-    public Bottomline(TextFontComponent textFontComponent){
+    public Bottomline(TextFontComponent textFontComponent) {
         super(textFontComponent);
     }
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        super.actionPerformed(e);
-        boolean underline = (StyleConstants.isUnderline(attr)) ? false : true;
+
+    public MutableAttributeSet changeStyle() {
+        boolean underline = (StyleConstants.isUnderline(super.changeStyle())) ? false : true;
         SimpleAttributeSet sas = new SimpleAttributeSet();
         StyleConstants.setUnderline(sas, underline);
-        setCharacterAttributes(textPane, sas, false);
+        setCharacterAttributes(super.textFontComponent.textPane, sas, false);
+        return null;
     }
 }
