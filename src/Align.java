@@ -4,10 +4,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 public class Align implements ActionListener {
+
+    UI ui;
     JTextPane textPane;
     JButton leftAlignButton, centerButton, rightAlignButton, tmpButton;
     DefineImageButton defineImageButton;
-    public Align(JTextPane jtextPane) {
+    public Align(UI ui,JTextPane jtextPane) {
+        this.ui=ui;
         textPane = jtextPane;
         defineImageButton = new DefineImageButton();
         leftAlignButton = createAlignButton("靠左對齊","leftAlign",defineImageButton.leftalignIcon);
@@ -51,18 +54,50 @@ public class Align implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String s = e.getActionCommand();
+        Strategy stra;
         if(s.equals("leftAlign")) {
-            MutableAttributeSet leftalignattr = new SimpleAttributeSet();
-            StyleConstants.setAlignment(leftalignattr, 0);
-            setParagraphAttributes(textPane, leftalignattr, false);
+            stra = new LeftAlign(this.ui);
+            stra.setAlign();
+
         } else if (s.equals("center")) {
-            MutableAttributeSet centerattr = new SimpleAttributeSet();
-            StyleConstants.setAlignment(centerattr, 1);
-            setParagraphAttributes(textPane, centerattr, false);
+            stra = new Center(this.ui);
+            stra.setAlign();
         }else if (s.equals("rightAlign")){
-            MutableAttributeSet rightalignattr = new SimpleAttributeSet();
-            StyleConstants.setAlignment(rightalignattr, 2);
-            setParagraphAttributes(textPane, rightalignattr, false);
+            stra = new RightAlign(this.ui);
+            stra.setAlign();
         }
+    }
+}
+interface Strategy{
+    void setAlign();
+}
+class LeftAlign implements Strategy{
+    UI ui;
+    public LeftAlign(UI ui){this.ui=ui;}
+    @Override
+    public void setAlign(){
+        MutableAttributeSet leftalignattr = new SimpleAttributeSet();
+        StyleConstants.setAlignment(leftalignattr, 0);
+        Align.setParagraphAttributes(ui.textPane, leftalignattr, false);
+    }
+}
+class Center implements Strategy{
+    UI ui;
+    public Center(UI ui){this.ui=ui;}
+    @Override
+    public void setAlign(){
+        MutableAttributeSet centerattr = new SimpleAttributeSet();
+        StyleConstants.setAlignment(centerattr, 1);
+        Align.setParagraphAttributes(ui.textPane, centerattr, false);
+    }
+}
+class RightAlign implements Strategy{
+    UI ui;
+    public RightAlign(UI ui){this.ui=ui;}
+    @Override
+    public void setAlign(){
+        MutableAttributeSet rightalignattr = new SimpleAttributeSet();
+        StyleConstants.setAlignment(rightalignattr, 2);
+        Align.setParagraphAttributes(ui.textPane, rightalignattr, false);
     }
 }
