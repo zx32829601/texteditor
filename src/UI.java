@@ -15,7 +15,7 @@ public class UI extends JFrame implements ActionListener {
     JMenu menuFile, menuEdit, menuFind, menuAbout, menuColor, menuModel, menuFont, menuHighLighter;
 
     JButton newButton, undoButton, listButton, numberlistButton;
-    JMenuItem cut, paste, copy, normalModel, darkModel,replace,FIND;
+    JMenuItem cut, paste, copy, normalModel, darkModel, replace, FIND;
 
 
     JLabel stateBar;
@@ -29,9 +29,9 @@ public class UI extends JFrame implements ActionListener {
     AdjustFontSize adjustFontSize = new AdjustFontSize();
 
     //按鈕class
-    Bold bold;
-    Italics italics;
-    Bottomline bottomline;
+    TextFontComponent bold;
+    TextFontComponent italics;
+    TextFontComponent bottomline;
 
     WordCountListener wordCountListener;
 
@@ -46,6 +46,7 @@ public class UI extends JFrame implements ActionListener {
     HighLighter highLighter;
 
     TextEdit textEdit;
+    TestDecorator testDecorator;
 
     Find find = new Find();
     Replace rp = new Replace();
@@ -76,20 +77,19 @@ public class UI extends JFrame implements ActionListener {
 
         //把openNewWindow併進FileEditor了
         fileEditor = new FileEditor(this);
-        menuFile=fileEditor.menuFile;
+        menuFile = fileEditor.menuFile;
 
         //menuEdit
-        textEdit=new TextEdit(this.textPane);
-        menuEdit=textEdit.menuEdit;
+        textEdit = new TextEdit(this.textPane);
+        menuEdit = textEdit.menuEdit;
 
 
         //TODO-待修改
         //menuFind
         menuFind = new JMenu("功能");
-        FIND= new JMenuItem("尋找");
-        FIND.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e)
-            {
+        FIND = new JMenuItem("尋找");
+        FIND.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 visitor.inputtext(textPane.getText());
                 find.accept(visitor);  //開啟視窗
             }
@@ -98,7 +98,7 @@ public class UI extends JFrame implements ActionListener {
         replace.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                if(count == 0)
+                if (count == 0)
                     visitor.inputtext(textPane.getText());
                 else
                     visitor.inputtext(rp.getop());
@@ -120,8 +120,8 @@ public class UI extends JFrame implements ActionListener {
 
 
         //提醒
-        highLighter=new HighLighter(textPane);
-        menuHighLighter=highLighter.menuHighLighter;
+        highLighter = new HighLighter(textPane);
+        menuHighLighter = highLighter.menuHighLighter;
 
         //menuAbout
         menuAbout = new JMenu("關於");
@@ -136,16 +136,14 @@ public class UI extends JFrame implements ActionListener {
 
         //上一步
         undoButton = new JButton(defineImageButton.undoIcon);
-        undo=new Undo(textPane);
-
-        //粗體
-        bold = new Bold(textPane);
+        undo = new Undo(textPane);
 
         //斜體
-        italics = new Italics(textPane);
-
         //textUnderLine
-        bottomline = new Bottomline(textPane);
+        //粗體
+        testDecorator = new TestDecorator(textPane);
+
+
 
         //對齊
         align = new Align(textPane);
@@ -230,9 +228,9 @@ public class UI extends JFrame implements ActionListener {
         toolBar.add(newButton);
         toolBar.add(undo.undoButton);
         toolBar.add(undo.saveButton);
-        toolBar.add(bold.boldButton);
-        toolBar.add(italics.italicsButton);
-        toolBar.add(bottomline.bottomlineButton);
+        toolBar.add(testDecorator.boldButton);
+        toolBar.add(testDecorator.italicsButton);
+        toolBar.add(testDecorator.bottomlineButton);
         toolBar.add(listButton);
         toolBar.add(numberlistButton);
         toolBar.add(adjustFontSize.comboBox);
