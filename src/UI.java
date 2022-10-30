@@ -148,7 +148,7 @@ public class UI extends JFrame implements ActionListener {
         bottomline = new Bottomline(textPane);
 
         //對齊
-        align = new Align(textPane);
+        align = new Align(this,textPane);
 
         //TODO-等待全域變數的出現
         //項目清單
