@@ -12,10 +12,10 @@ public class UI extends JFrame implements ActionListener {
     boolean listState = true;
     JMenuBar menuBar;
     JToolBar toolBar;
-    JMenu menuFile, menuEdit, menuFind, menuAbout, menuColor, menuModel, menuFont, menuHighLighter;
+    JMenu menuFile, menuEdit, menuFind, menuAbout, menuColor, menuModel, menuFont, menuText,menuHighLighter;
 
     JButton newButton, undoButton, listButton, numberlistButton,rhombusButton;
-    JMenuItem cut, paste, copy, normalModel, darkModel, replace, FIND;
+    JMenuItem cut, paste, copy, normalModel, darkModel, replace, FIND,yellow,green1,yellow1,green;
 
 
     JLabel stateBar;
@@ -38,12 +38,11 @@ public class UI extends JFrame implements ActionListener {
     FileEditor fileEditor;
 
     FontEdit fontEdit;
+    BridgeClient bridgeClient;
     Align align;
     Undo undo;
 
     Window_change window_change;
-
-    HighLighter highLighter;
 
     TextEdit textEdit;
     TestDecorator testDecorator;
@@ -120,15 +119,31 @@ public class UI extends JFrame implements ActionListener {
 
 
         //提醒
-        highLighter = new HighLighter(textPane);
-        menuHighLighter = highLighter.menuHighLighter;
+        menuText = new JMenu("醒目提示");
+        yellow=new JMenuItem("黃色");
+        green=new JMenuItem("綠色");
+        menuText.add(yellow);
+        menuText.add(green);
+        bridgeClient =new BridgeClient(textPane);
+        yellow.addActionListener(new BridgeClient(textPane));
+        green.addActionListener(new BridgeClient(textPane));
+        menuHighLighter = bridgeClient.menuHighLighter;
+
+        //menuColor
+        menuColor=new JMenu("字體顏色");
+        yellow1=new JMenuItem("yello");
+        green1=new JMenuItem("green");
+        yellow1.addActionListener(new BridgeClient(textPane));
+        green1.addActionListener(new BridgeClient(textPane));
+        menuColor.add(yellow1);
+        menuColor.add(green1);
+
 
         //menuAbout
         menuAbout = new JMenu("關於");
 
         //字體顏色、字體樣式
         fontEdit = new FontEdit(textPane);
-        menuColor = fontEdit.menuColor;
         menuFont = fontEdit.menuFont;
 
         //建立新檔
@@ -223,7 +238,7 @@ public class UI extends JFrame implements ActionListener {
         menuBar.add(menuFind);
         menuBar.add(menuFont);
         menuBar.add(menuColor);
-        menuBar.add(menuHighLighter);
+        menuBar.add(menuText);
         menuBar.add(menuAbout);
         menuBar.add(menuModel);
 

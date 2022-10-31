@@ -15,10 +15,6 @@ public class FontEdit implements ActionListener {
     InvokerCommand invoker;
     public FontEdit(JTextPane jtextPane){
         textPane=jtextPane;
-        menuColor = new JMenu("字體顏色");
-        addColor("藍色");
-        addColor("紅色");
-        addColor("粉紅色");
         menuFont = new JMenu("字體");
         addFontStyle("標楷體");
         addFontStyle("微軟正黑體");
@@ -70,19 +66,7 @@ public class FontEdit implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String s=e.getActionCommand();
 
-        if(s.equals("藍色")){
-            Command blueFont = new BlueFontCommand(receiver);
-            invoker.addCommend(blueFont);
-            invoker.execute();
-        }else if(s.equals("粉紅色")){
-            Command pinkFont = new PinkFontCommand(receiver);
-            invoker.addCommend(pinkFont);
-            invoker.execute();
-        }else if(s.equals("紅色")){
-            Command redFont = new RedFontCommand(receiver);
-            invoker.addCommend(redFont);
-            invoker.execute();
-        }else if(s.equals("標楷體")){
+       if(s.equals("標楷體")){
             Command fontStyleOne = new FontStyleOneCommand(receiver);
             invoker.addCommend(fontStyleOne);
             invoker.execute();
