@@ -23,7 +23,10 @@ public class DefineImageButton {
     Image liImage = listImage.getScaledInstance(20,20,Image.SCALE_AREA_AVERAGING);
 
     ImageIcon listIcon = new ImageIcon(liImage);
+    Image rhombusImage = new ImageIcon("assets/image/icons/菱形.png").getImage();
+    Image rhImage = rhombusImage.getScaledInstance(20,20,Image.SCALE_AREA_AVERAGING);
 
+    ImageIcon rhombusIcon = new ImageIcon(rhImage);
     Image numberlistImage = new ImageIcon("assets/image/icons/number.png").getImage();
     Image nlImage = numberlistImage.getScaledInstance(20,20,Image.SCALE_AREA_AVERAGING);
 
