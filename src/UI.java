@@ -14,7 +14,7 @@ public class UI extends JFrame implements ActionListener {
     JToolBar toolBar;
     JMenu menuFile, menuEdit, menuFind, menuAbout, menuColor, menuModel, menuFont, menuHighLighter;
 
-    JButton newButton, undoButton, listButton, numberlistButton;
+    JButton newButton, undoButton, listButton, numberlistButton,rhombusButton;
     JMenuItem cut, paste, copy, normalModel, darkModel, replace, FIND;
 
 
@@ -149,26 +149,49 @@ public class UI extends JFrame implements ActionListener {
         align = new Align(this,textPane);
 
         //TODO-等待全域變數的出現
-        //項目清單
+        //圓形
         listButton = new JButton(defineImageButton.listIcon);
-        listButton.setToolTipText("項目清單");
+        listButton.setToolTipText("圓形符號");
         listButton.setText("list");
         listButton.setFont(new Font("list", 0, 0));
         listButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (listState == true) {
-                    List l = new List(textPane.getText(), listState);
-                    textPane.setText(l.Changed_text());
+                    Sign a = List.BuildSign("圓形");
+                    a.BuildSign(textPane.getText(), listState);
+                    textPane.setText(a.Changed_text());
                     listState = false;
+                    System.out.println(listState);
                 } else {
-                    List l = new List(textPane.getText(), listState);
-                    textPane.setText(l.Changed_text());
+                    Sign a = List.BuildSign("圓形");
+                    a.BuildSign(textPane.getText(), listState);
+                    textPane.setText(a.Changed_text());
                     listState = true;
                 }
 
             }
         });
+        //菱形
+        rhombusButton = new JButton(defineImageButton.rhombusIcon);
+        rhombusButton.setToolTipText("菱形符號");
+        rhombusButton.setText("rhombussing");
+        rhombusButton.setFont(new Font("rhombussing", 0, 0));
+        rhombusButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (listState == true) {
+                    Sign a = List.BuildSign("菱形");
+                    a.BuildSign(textPane.getText(), listState);
+                    textPane.setText(a.Changed_text());
+                    listState = false;
+                } else {
+                    Sign a = List.BuildSign("菱形");
+                    a.BuildSign(textPane.getText(), listState);
+                    textPane.setText(a.Changed_text());
+                    listState = true;
+                }
 
+            }
+        });
         //TODO-等待全域變數的出現
         //數字清單
         numberlistButton = new JButton(defineImageButton.numberlistIcon);
@@ -232,6 +255,7 @@ public class UI extends JFrame implements ActionListener {
         toolBar.add(testDecorator.italicsButton);
         toolBar.add(testDecorator.bottomlineButton);
         toolBar.add(listButton);
+        toolBar.add(rhombusButton);
         toolBar.add(numberlistButton);
         toolBar.add(adjustFontSize.comboBox);
         toolBar.add(align.leftAlignButton);
