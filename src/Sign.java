@@ -1,7 +1,9 @@
 public interface Sign {
-    void BuildSign(String input_text, Boolean state);
+    StringBuffer Output = new StringBuffer();
+    StringBuffer doc = new StringBuffer();
+    void Input(String input_text, Boolean state);
 
-    public String Changed_text();
+    String Changed_text();
 
 
 }
