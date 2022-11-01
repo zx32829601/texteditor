@@ -44,8 +44,8 @@ abstract class Model_Factory{
     Model_Factory(UI ui){
         this.ui = ui;
     }
-    abstract void setTextColor(Color c);
-    abstract void setBackgroundColor(Color c);
+    abstract public void setTextColor(Color c);
+    abstract public void setBackgroundColor(Color c);
 }
 
 class Normal_Factory extends Model_Factory{
@@ -53,12 +53,12 @@ class Normal_Factory extends Model_Factory{
         super(ui);
     }
     @Override
-    void setBackgroundColor(Color c) {
+    public void setBackgroundColor(Color c) {
         ui.textPane.setBackground(c);
         ui.menuBar.setBackground(c);
     }
     @Override
-    void setTextColor(Color c) {
+    public void setTextColor(Color c) {
         ui.menuText.setForeground(c);
         ui.textPane.setForeground(c);
         ui.menuFile.setForeground(c);
@@ -77,12 +77,12 @@ class Dark_Factory extends Model_Factory{
         super(ui);
     }
     @Override
-    void setBackgroundColor(Color c) {
+    public void setBackgroundColor(Color c) {
         ui.textPane.setBackground(c);
         ui.menuBar.setBackground(c);
     }
     @Override
-    void setTextColor(Color c) {
+    public void setTextColor(Color c) {
         ui.menuText.setForeground(c);
         ui.textPane.setForeground(c);
         ui.menuFile.setForeground(c);
