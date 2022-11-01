@@ -158,13 +158,13 @@ public class UI extends JFrame implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 if (listState == true) {
                     Sign a = SignFactory.BuildSign("圓形");
-                    a.BuildSign(textPane.getText(), listState);
+                    a.Input(textPane.getText(), listState);
                     textPane.setText(a.Changed_text());
                     listState = false;
                     System.out.println(listState);
                 } else {
                     Sign a = SignFactory.BuildSign("圓形");
-                    a.BuildSign(textPane.getText(), listState);
+                    a.Input(textPane.getText(), listState);
                     textPane.setText(a.Changed_text());
                     listState = true;
                 }
@@ -180,12 +180,12 @@ public class UI extends JFrame implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 if (listState == true) {
                     Sign a = SignFactory.BuildSign("菱形");
-                    a.BuildSign(textPane.getText(), listState);
+                    a.Input(textPane.getText(), listState);
                     textPane.setText(a.Changed_text());
                     listState = false;
                 } else {
                     Sign a = SignFactory.BuildSign("菱形");
-                    a.BuildSign(textPane.getText(), listState);
+                    a.Input(textPane.getText(), listState);
                     textPane.setText(a.Changed_text());
                     listState = true;
                 }

@@ -1,14 +1,7 @@
 import javax.swing.*;
 
 public class RhombusSign implements Sign {
-    static StringBuffer Output = new StringBuffer();
-    static String text;
-    static boolean stat;
-
-
-    public void BuildSign(String input_text, Boolean state) {
-        JTextPane textPane = new JTextPane();
-        StringBuffer doc = new StringBuffer();
+    public void Input(String input_text, Boolean state) {
         String ip[];
         ip = input_text.split("\n");
         if (state) {
