@@ -25,47 +25,41 @@ public class Window_change implements ActionListener{
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        ModelFactory text;
-        ModelFactory bg;
+        Model_Factory m;
         String s = e.getActionCommand();
         if(s.equals("一般模式")){
-            text = new Text(this.co);
-            bg = new BG(this.co);
-            text.Normal();
-            bg.Normal();
+            m = new Normal_Factory(this.co);
+            m.setBackgroundColor(Color.white);
+            m.setTextColor(Color.black);
         }else if(s.equals("深色模式")){
-            text = new Text(this.co);
-            bg = new BG(this.co);
-            text.Dark();
-            bg.Dark();
+            m = new Dark_Factory(this.co);
+            m.setBackgroundColor(Color.darkGray);
+            m.setTextColor(Color.white);
         }
     }
 }
-abstract class ModelFactory{
-    abstract void Normal();
-    abstract void Dark();
-}
-class Text extends ModelFactory{
+
+abstract class Model_Factory{
     UI ui;
-    public Text(UI ui){
+    Model_Factory(UI ui){
         this.ui = ui;
     }
-    @Override
-    public void Normal(){
-        Color c = Color.black;
-        ui.textPane.setForeground(c);
-        ui.menuFile.setForeground(c);
-        ui.menuEdit.setForeground(c);
-        ui.menuFind.setForeground(c);
-        ui.menuAbout.setForeground(c);
-        ui.menuColor.setForeground(c);
-        ui.menuFont.setForeground(c);
-        ui.menuHighLighter.setForeground(c);
-        ui.menuModel.setForeground(c);
+    abstract public void setTextColor(Color c);
+    abstract public void setBackgroundColor(Color c);
+}
+
+class Normal_Factory extends Model_Factory{
+    Normal_Factory(UI ui) {
+        super(ui);
     }
     @Override
-    public void Dark(){
-        Color c = Color.white;
+    public void setBackgroundColor(Color c) {
+        ui.textPane.setBackground(c);
+        ui.menuBar.setBackground(c);
+    }
+    @Override
+    public void setTextColor(Color c) {
+        ui.menuText.setForeground(c);
         ui.textPane.setForeground(c);
         ui.menuFile.setForeground(c);
         ui.menuEdit.setForeground(c);
@@ -77,21 +71,27 @@ class Text extends ModelFactory{
         ui.menuModel.setForeground(c);
     }
 }
-class BG extends ModelFactory{
-    UI ui;
-    public BG(UI ui){
-        this.ui = ui;
+
+class Dark_Factory extends Model_Factory{
+    Dark_Factory(UI ui) {
+        super(ui);
     }
     @Override
-    public void Normal(){
-        Color c = Color.white;
+    public void setBackgroundColor(Color c) {
         ui.textPane.setBackground(c);
         ui.menuBar.setBackground(c);
     }
     @Override
-    public void Dark(){
-        Color c = Color.darkGray;
-        ui.textPane.setBackground(c);
-        ui.menuBar.setBackground(c);
+    public void setTextColor(Color c) {
+        ui.menuText.setForeground(c);
+        ui.textPane.setForeground(c);
+        ui.menuFile.setForeground(c);
+        ui.menuEdit.setForeground(c);
+        ui.menuFind.setForeground(c);
+        ui.menuAbout.setForeground(c);
+        ui.menuColor.setForeground(c);
+        ui.menuFont.setForeground(c);
+        ui.menuHighLighter.setForeground(c);
+        ui.menuModel.setForeground(c);
     }
 }
