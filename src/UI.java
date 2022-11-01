@@ -15,7 +15,7 @@ public class UI extends JFrame implements ActionListener {
     JMenu menuFile, menuEdit, menuFind, menuAbout, menuColor, menuModel, menuFont, menuText,menuHighLighter;
 
     JButton newButton, undoButton, listButton, numberlistButton,rhombusButton;
-    JMenuItem cut, paste, copy, normalModel, darkModel, replace, FIND,yellow,green1,yellow1,green;
+    JMenuItem cut, paste, copy, replace, FIND,yellow,green1,yellow1,green;
 
 
     JLabel stateBar;

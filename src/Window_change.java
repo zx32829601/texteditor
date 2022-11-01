@@ -53,6 +53,7 @@ class Text extends ModelFactory{
     @Override
     public void Normal(){
         Color c = Color.black;
+        ui.menuText.setForeground(c);
         ui.textPane.setForeground(c);
         ui.menuFile.setForeground(c);
         ui.menuEdit.setForeground(c);
@@ -66,6 +67,7 @@ class Text extends ModelFactory{
     @Override
     public void Dark(){
         Color c = Color.white;
+        ui.menuText.setForeground(c);
         ui.textPane.setForeground(c);
         ui.menuFile.setForeground(c);
         ui.menuEdit.setForeground(c);
