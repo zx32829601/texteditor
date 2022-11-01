@@ -1,6 +1,6 @@
 import javax.swing.*;
 
-public class List extends JFrame {
+public class SignFactory extends JFrame {
     static StringBuffer Output = new StringBuffer();
 
     public static Sign BuildSign(String SingType){

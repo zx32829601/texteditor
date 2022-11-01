@@ -157,13 +157,13 @@ public class UI extends JFrame implements ActionListener {
         listButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (listState == true) {
-                    Sign a = List.BuildSign("圓形");
+                    Sign a = SignFactory.BuildSign("圓形");
                     a.BuildSign(textPane.getText(), listState);
                     textPane.setText(a.Changed_text());
                     listState = false;
                     System.out.println(listState);
                 } else {
-                    Sign a = List.BuildSign("圓形");
+                    Sign a = SignFactory.BuildSign("圓形");
                     a.BuildSign(textPane.getText(), listState);
                     textPane.setText(a.Changed_text());
                     listState = true;
@@ -179,12 +179,12 @@ public class UI extends JFrame implements ActionListener {
         rhombusButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (listState == true) {
-                    Sign a = List.BuildSign("菱形");
+                    Sign a = SignFactory.BuildSign("菱形");
                     a.BuildSign(textPane.getText(), listState);
                     textPane.setText(a.Changed_text());
                     listState = false;
                 } else {
-                    Sign a = List.BuildSign("菱形");
+                    Sign a = SignFactory.BuildSign("菱形");
                     a.BuildSign(textPane.getText(), listState);
                     textPane.setText(a.Changed_text());
                     listState = true;
