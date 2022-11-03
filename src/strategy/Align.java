@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 public class Align implements ActionListener {
-    Strategy stra;
+
     UI ui;
     JTextPane textPane;
     JButton leftAlignButton, centerButton, rightAlignButton, tmpButton;
@@ -72,18 +72,26 @@ public class Align implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String s = e.getActionCommand();
-
+        Context context1 =new  Context(new LeftAlign(this.ui));
+        Context context2 =new  Context(new Center(this.ui));
+        Context context3 =new  Context(new RightAlign(this.ui));
         if(s.equals("leftAlign")) {
-            stra = new LeftAlign(this.ui);
-            stra.setAlign();
+            context1.setAlign();
 
         } else if (s.equals("center")) {
-            stra = new Center(this.ui);
-            stra.setAlign();
+            context2.setAlign();
         }else if (s.equals("rightAlign")){
-            stra = new RightAlign(this.ui);
-            stra.setAlign();
+            context3.setAlign();
         }
+    }
+}
+class Context {
+    private final Strategy strategy;
+    public Context(Strategy strategy) {
+        this.strategy = strategy;
+    }
+    public void setAlign() {
+        this.strategy.setAlign();
     }
 }
 interface Strategy{
