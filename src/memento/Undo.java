@@ -16,7 +16,7 @@ import java.util.Stack;
 public class Undo implements DocumentListener, ActionListener {
     JTextPane textPane;
     private Originator doc;
-    private List<History> histories;
+    private Stack<History> histories;
     private DefineImageButton defineImageButton = new DefineImageButton();
     JButton undoButton, saveButton;
     private int historyPosition = 0;
@@ -24,7 +24,7 @@ public class Undo implements DocumentListener, ActionListener {
     public Undo(JTextPane textPane) {
         this.textPane = textPane;
         doc = new Originator(textPane.getText());
-        histories = new ArrayList<>();
+        histories=new Stack<>();
         backup();
         createUndoButton();
     }
@@ -61,7 +61,7 @@ public class Undo implements DocumentListener, ActionListener {
             JOptionPane.showMessageDialog(textPane, "can't undo");
         }
         historyPosition--;
-        History history = histories.get(historyPosition);
+        History history=histories.pop();
         doc.restoreHistory(history);
         System.out.println(historyPosition);
         System.out.println(history.getText());
