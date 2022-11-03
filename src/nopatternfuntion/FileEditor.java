@@ -177,7 +177,7 @@ public class FileEditor implements ActionListener {
 
 
     private boolean isCurrentFileSaved() {
-        if (u.wordCountListener.stateBar.getText().equals("未修改")) {
+        if (u.getObserver().getStateBar().getText().equals("未修改")) {
             return false;
         } else {
             return true;

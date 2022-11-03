@@ -1,5 +1,6 @@
 package main;
 
+import observer.Observer;
 import abstractfactory.Window_change;
 import bridge.BridgeClient;
 import command.FontEdit;
@@ -11,14 +12,10 @@ import factory.Sign;
 import factory.SignFactory;
 import image.DefineImageButton;
 import memento.Undo;
-import nopatternfuntion.AdjustFontSize;
-import nopatternfuntion.FileEditor;
-import nopatternfuntion.WordCountListener;
+import nopatternfuntion.*;
 import strategy.Align;
-import visitor.Find;
-import visitor.Fuc_visitor;
-import visitor.Replace;
-
+import visitor.*;
+import observer.*;
 import javax.swing.*;
 import javax.swing.text.*;
 import java.awt.*;
@@ -38,6 +35,8 @@ public class UI extends JFrame implements ActionListener {
 
     private JButton listButton, numberlistButton, rhombusButton;
     private JMenuItem replace, FIND, yellow, green1, yellow1, green;
+    private ItDocument document;
+    private Observer observer;
 
 
     StyleContext sc = new StyleContext();
@@ -52,8 +51,6 @@ public class UI extends JFrame implements ActionListener {
     TextFontComponent bold;
     TextFontComponent italics;
     TextFontComponent bottomline;
-
-    public WordCountListener wordCountListener;
 
     FileEditor fileEditor;
 
@@ -268,8 +265,12 @@ public class UI extends JFrame implements ActionListener {
         contentPane.add(panel, BorderLayout.CENTER);
 
         //顯示字數
-        wordCountListener = new WordCountListener(textPane);
-        contentPane.add(wordCountListener.getStateBar(), BorderLayout.SOUTH);
+        observer=new ConcreteObserver();
+        document=new ConcreteItDocument(textPane);
+        document.registerObservers(observer);
+        contentPane.add(observer.getStateBar(),BorderLayout.SOUTH);
+//        wordCountListener = new WordCountListener(textPane);
+//        contentPane.add(wordCountListener.getStateBar(), BorderLayout.SOUTH);
 
 
         toolBar.add(undo.getUndoButton());
@@ -289,6 +290,9 @@ public class UI extends JFrame implements ActionListener {
         this.add(toolBar, BorderLayout.NORTH);
     }
 
+    public Observer getObserver() {
+        return observer;
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
