@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 public class Align implements ActionListener {
-
+    Strategy stra;
     UI ui;
     JTextPane textPane;
     JButton leftAlignButton, centerButton, rightAlignButton, tmpButton;
@@ -54,7 +54,7 @@ public class Align implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String s = e.getActionCommand();
-        Strategy stra;
+
         if(s.equals("leftAlign")) {
             stra = new LeftAlign(this.ui);
             stra.setAlign();
