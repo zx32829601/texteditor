@@ -15,14 +15,12 @@ public class ConcreteObserver implements Observer{
     public void createWordCount(){
         stateBar = new JLabel("Characters:" + 0);
         stateBar.setHorizontalAlignment(SwingConstants.LEFT);
-
-
     }
     @Override
     public void calculate(Document document) {
         int count=document.getLength();
+
         System.out.println(count);
         stateBar.setText("Characters:"+count);
-
     }
 }
