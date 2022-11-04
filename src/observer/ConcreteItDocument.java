@@ -15,35 +15,31 @@ public class ConcreteItDocument implements ItDocument, DocumentListener {
     @Override
     public void registerObservers(Observer observer) {
         this.observer=observer;
-
     }
 
     @Override
     public void removeObservers(Observer observer) {
-
+        this.observer=observer;
     }
 
     @Override
     public void notifyObserver(DocumentEvent e) {
-        javax.swing.text.Document document=e.getDocument();
-    observer.calculate(document);
+        javax.swing.text.Document document = e.getDocument();
+        observer.calculate(document);
     }
 
     @Override
     public void insertUpdate(DocumentEvent e) {
         notifyObserver(e);
-
     }
 
     @Override
     public void removeUpdate(DocumentEvent e) {
         notifyObserver(e);
-
     }
 
     @Override
     public void changedUpdate(DocumentEvent e) {
         notifyObserver(e);
-
     }
 }

@@ -5,10 +5,7 @@ public class ConcreteObserver implements Observer{
 
     static JLabel stateBar;
     public ConcreteObserver(){
-
         createWordCount();
-
-
     }
 
     public  JLabel getStateBar() {
@@ -24,8 +21,6 @@ public class ConcreteObserver implements Observer{
     @Override
     public void calculate(Document document) {
         int count=document.getLength();
-
-
         System.out.println(count);
         stateBar.setText("Characters:"+count);
 
