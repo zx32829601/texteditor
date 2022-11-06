@@ -19,13 +19,11 @@ public class Undo implements DocumentListener, ActionListener {
     private Stack<History> histories;
     private DefineImageButton defineImageButton = new DefineImageButton();
     JButton undoButton, saveButton;
-    private int historyPosition = 0;
 
     public Undo(JTextPane textPane) {
         this.textPane = textPane;
         doc = new Originator(textPane.getText());
-        histories=new Stack<>();
-        backup();
+        histories = new Stack<>();
         createUndoButton();
     }
 
@@ -44,7 +42,6 @@ public class Undo implements DocumentListener, ActionListener {
     public void backup() {
         doc.setText(textPane.getText());
         histories.add(doc.createHistory());
-        historyPosition++;
     }
 
     public JButton getSaveButton() {
@@ -57,16 +54,16 @@ public class Undo implements DocumentListener, ActionListener {
 
     public void undo() throws BadLocationException {
         System.out.println("復原動作");
-        if (historyPosition == 0) {
+        if (histories.empty()) {
             JOptionPane.showMessageDialog(textPane, "can't undo");
+        }else {
+            History history = histories.pop();
+            doc.restoreHistory(history);
+            textPane.setText(history.getText());
         }
-        historyPosition--;
-        History history=histories.pop();
-        doc.restoreHistory(history);
-        System.out.println(historyPosition);
-        System.out.println(history.getText());
-        System.out.println(doc.getText());
-        textPane.setText(history.getText());
+
+
+
 
 
     }
@@ -76,18 +73,17 @@ public class Undo implements DocumentListener, ActionListener {
     public void insertUpdate(DocumentEvent e) {
 
 
-
     }
 
 
     @Override
     public void removeUpdate(DocumentEvent e) {
-
-
+backup();
     }
 
     @Override
     public void changedUpdate(DocumentEvent e) {
+
     }
 
     @Override
