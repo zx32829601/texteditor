@@ -68,16 +68,17 @@ class Normal_Factory extends Model_Factory{
     }
     @Override
     public void setTextColor(Color c) {
-        ui.menuText.setForeground(c);
-        ui.textPane.setForeground(c);
-        ui.menuFile.setForeground(c);
-        ui.menuEdit.setForeground(c);
-        ui.menuFind.setForeground(c);
-        ui.menuAbout.setForeground(c);
-        ui.menuColor.setForeground(c);
-        ui.menuFont.setForeground(c);
-        ui.menuHighLighter.setForeground(c);
-        ui.menuModel.setForeground(c);
+        ui.getMenuText().setForeground(c);
+        ui.getTextPane().setForeground(c);
+        ui.getMenuFile().setForeground(c);
+        ui.getMenuEdit().setForeground(c);
+        ui.getMenuFind().setForeground(c);
+        ui.getMenuAbout().setForeground(c);
+        ui.getMenuColor().setForeground(c);
+        ui.getMenuFont().setForeground(c);
+        ui.getMenuHighLighter().setForeground(c);
+        ui.getMenuModel().setForeground(c);
+
     }
 }
 
@@ -92,15 +93,15 @@ class Dark_Factory extends Model_Factory{
     }
     @Override
     public void setTextColor(Color c) {
-        ui.menuText.setForeground(c);
-        ui.textPane.setForeground(c);
-        ui.menuFile.setForeground(c);
-        ui.menuEdit.setForeground(c);
-        ui.menuFind.setForeground(c);
-        ui.menuAbout.setForeground(c);
-        ui.menuColor.setForeground(c);
-        ui.menuFont.setForeground(c);
-        ui.menuHighLighter.setForeground(c);
-        ui.menuModel.setForeground(c);
+        ui.getMenuText().setForeground(c);
+        ui.getTextPane().setForeground(c);
+        ui.getMenuFile().setForeground(c);
+        ui.getMenuEdit().setForeground(c);
+        ui.getMenuFind().setForeground(c);
+        ui.getMenuAbout().setForeground(c);
+        ui.getMenuColor().setForeground(c);
+        ui.getMenuFont().setForeground(c);
+        ui.getMenuHighLighter().setForeground(c);
+        ui.getMenuModel().setForeground(c);
     }
 }

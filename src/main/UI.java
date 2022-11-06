@@ -16,6 +16,7 @@ import nopatternfuntion.*;
 import strategy.Align;
 import visitor.*;
 import observer.*;
+
 import javax.swing.*;
 import javax.swing.text.*;
 import java.awt.*;
@@ -29,9 +30,12 @@ public class UI extends JFrame implements ActionListener {
 
     boolean listState = true;
     public JMenuBar menuBar;
+
+
     private JToolBar toolBar;
 
-    public JMenu menuEdit, menuFile, menuFind, menuAbout, menuColor, menuModel, menuFont, menuText, menuHighLighter;
+    private JMenu menuEdit, menuFile, menuFind, menuAbout, menuColor, menuModel, menuFont, menuText, menuHighLighter;
+
 
     private JButton listButton, numberlistButton, rhombusButton;
     private JMenuItem replace, FIND, yellow, green1, yellow1, green;
@@ -46,24 +50,14 @@ public class UI extends JFrame implements ActionListener {
 
     DefineImageButton defineImageButton = new DefineImageButton();
     AdjustFontSize adjustFontSize = new AdjustFontSize();
-
-    //按鈕class
-    TextFontComponent bold;
-    TextFontComponent italics;
-    TextFontComponent bottomline;
-
     FileEditor fileEditor;
-
     FontEdit fontEdit;
     BridgeClient bridgeClient;
     Align align;
     Undo undo;
-
     Window_change window_change;
-
     TextEdit textEdit;
     TestDecorator testDecorator;
-
     Find find = new Find();
     Replace rp = new Replace();
     Fuc_visitor visitor = new Fuc_visitor();
@@ -265,10 +259,10 @@ public class UI extends JFrame implements ActionListener {
         contentPane.add(panel, BorderLayout.CENTER);
 
         //顯示字數
-        observer=new ConcreteObserver();
-        document=new ConcreteItDocument(textPane);
+        observer = new ConcreteObserver();
+        document = new ConcreteItDocument(textPane);
         document.registerObservers(observer);
-        contentPane.add(observer.getStateBar(),BorderLayout.SOUTH);
+        contentPane.add(observer.getStateBar(), BorderLayout.SOUTH);
 //        wordCountListener = new WordCountListener(textPane);
 //        contentPane.add(wordCountListener.getStateBar(), BorderLayout.SOUTH);
 
@@ -292,6 +286,46 @@ public class UI extends JFrame implements ActionListener {
 
     public Observer getObserver() {
         return observer;
+    }
+
+    public JMenu getMenuEdit() {
+        return menuEdit;
+    }
+
+    public JMenu getMenuFile() {
+        return menuFile;
+    }
+
+    public JMenu getMenuFind() {
+        return menuFind;
+    }
+
+    public JMenu getMenuAbout() {
+        return menuAbout;
+    }
+
+    public JMenu getMenuColor() {
+        return menuColor;
+    }
+
+    public JMenu getMenuModel() {
+        return menuModel;
+    }
+
+    public JMenu getMenuFont() {
+        return menuFont;
+    }
+
+    public JMenu getMenuText() {
+        return menuText;
+    }
+
+    public JMenu getMenuHighLighter() {
+        return menuHighLighter;
+    }
+
+    public JTextPane getTextPane() {
+        return textPane;
     }
 
     @Override
