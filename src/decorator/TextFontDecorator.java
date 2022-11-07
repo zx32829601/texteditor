@@ -5,13 +5,13 @@ import javax.swing.text.*;
 
 
 abstract class TextFontDecorator extends TextFont{
-    TextFontComponent textFontComponent;
-    public TextFontDecorator(TextFontComponent textFontComponent){
-        this.textFontComponent=textFontComponent;
+    TextFont textFont;
+    public TextFontDecorator(TextFont textFont){
+        this.textFont=textFont;
     }
 
     public MutableAttributeSet changeStyle(){
-        return textFontComponent.changeStyle();
+        return textFont.changeStyle();
 
     }
     public static void setCharacterAttributes(JEditorPane editor,
@@ -29,5 +29,6 @@ abstract class TextFontDecorator extends TextFont{
         }
         inputAttributes.addAttributes(attr);
     }
-
 }
+
+
