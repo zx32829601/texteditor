@@ -77,7 +77,6 @@ public class Align implements ActionListener {
         Context context3 =new  Context(new RightAlign(this.ui));
         if(s.equals("leftAlign")) {
             context1.setAlign();
-
         } else if (s.equals("center")) {
             context2.setAlign();
         }else if (s.equals("rightAlign")){
