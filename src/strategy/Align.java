@@ -72,25 +72,26 @@ public class Align implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String s = e.getActionCommand();
-        Context context1 =new  Context(new LeftAlign(this.ui));
-        Context context2 =new  Context(new Center(this.ui));
-        Context context3 =new  Context(new RightAlign(this.ui));
+        Context context=new Context();
         if(s.equals("leftAlign")) {
-            context1.setAlign();
+            context.setStrategy(new LeftAlign(this.ui));
+            context.performAlign();
         } else if (s.equals("center")) {
-            context2.setAlign();
+            context.setStrategy(new Center(this.ui));
+            context.performAlign();
         }else if (s.equals("rightAlign")){
-            context3.setAlign();
+            context.setStrategy(new RightAlign(this.ui));
+            context.performAlign();
         }
     }
 }
 class Context {
-    private final Strategy strategy;
-    public Context(Strategy strategy) {
-        this.strategy = strategy;
+    Strategy strategy;
+    public void setStrategy(Strategy strategy){
+        this.strategy=strategy;
     }
-    public void setAlign() {
-        this.strategy.setAlign();
+    public  void performAlign(){
+        strategy.setAlign();
     }
 }
 interface Strategy{

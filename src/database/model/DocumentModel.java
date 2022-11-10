@@ -18,12 +18,12 @@ public class DocumentModel implements Serializable,Cloneable  {
     @Id
     @GeneratedValue
     public int documentId;
-    public Document document;
+    public String text;
     public Date updateTime;
     public Date createTime;
 
-    public DocumentModel(Document document) {
-        this.document = document;
+    public DocumentModel(String t) {
+        this.text = t;
     }
     @PrePersist
     void updateCreateDates(){
@@ -35,5 +35,10 @@ public class DocumentModel implements Serializable,Cloneable  {
     @PreUpdate
     void updateDates(){
         updateTime=new Date();
+    }
+
+    public void setText(String text) {
+        this.text = text;
+        updateDates();
     }
 }

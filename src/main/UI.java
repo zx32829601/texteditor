@@ -17,6 +17,7 @@ import strategy.Align;
 import visitor.*;
 import observer.*;
 
+
 import javax.swing.*;
 import javax.swing.text.*;
 import java.awt.*;
@@ -61,6 +62,7 @@ public class UI extends JFrame implements ActionListener {
     Find find = new Find();
     Replace rp = new Replace();
     Fuc_visitor visitor = new Fuc_visitor();
+    database.MenuDB menuDB=new database.MenuDB();
     int count = 0;
 
     public UI() {
@@ -151,7 +153,7 @@ public class UI extends JFrame implements ActionListener {
 
 
         //menuAbout
-        menuAbout = new JMenu("關於");
+        menuAbout = menuDB.getMenuDB();
 
         //字體顏色、字體樣式
         fontEdit = new FontEdit(textPane);
