@@ -3,7 +3,7 @@ package bridge;
 import javax.swing.*;
 import javax.swing.text.*;
 
-class RefindHighLighter extends AbstractionFont  {
+class  RefindHighLighter extends AbstractionFont  {
 
 
     public RefindHighLighter(JTextPane textPane) {
