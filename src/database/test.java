@@ -1,4 +1,5 @@
-import model.DocumentModel;
+
+import model.TextEnitity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -12,12 +13,13 @@ public class test {
         EntityManager entityManager=entityManagerFactory.createEntityManager();
 
 entityManager.getTransaction().begin();
-        Query q1=entityManager.createQuery("SELECT COUNT(p)FROM DocumentModel p");
-        DocumentModel documentModel1=entityManager.find(DocumentModel.class,1);
-        documentModel1.setText("This is the Group five's document editor information If you want to change about this you can download from the git and commit and push ccccc@gmail.com 09-xxxxxxxxxxxxx" +
+
+        Query q1=entityManager.createQuery("SELECT COUNT(p)FROM TextEnitity p");
+        TextEnitity textEnitity=entityManager.find(TextEnitity.class,1);
+        textEnitity.setText("This is the Group five's document editor information If you want to change about this you can download from the git and commit and push ccccc@gmail.com 09-xxxxxxxxxxxxx" +
                 "");
         entityManager.getTransaction().commit();
-        System.out.println(documentModel1.getText());
+        System.out.println(textEnitity.getText());
         System.out.println(q1.getSingleResult());
 
 

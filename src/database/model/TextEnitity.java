@@ -13,7 +13,7 @@ import java.util.Date;
 @Setter
 @Getter
 @NoArgsConstructor
-public class DocumentModel implements Serializable,Cloneable  {
+public class TextEnitity implements Serializable,Cloneable  {
 
     @Id
     @GeneratedValue
@@ -22,7 +22,7 @@ public class DocumentModel implements Serializable,Cloneable  {
     public Date updateTime;
     public Date createTime;
 
-    public DocumentModel(String t) {
+    public TextEnitity(String t) {
         this.text = t;
     }
     @PrePersist

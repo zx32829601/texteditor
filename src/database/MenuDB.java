@@ -1,5 +1,5 @@
 package database;
-import model.DocumentModel;
+import model.TextEnitity;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,8 +32,8 @@ public class MenuDB implements ActionListener {
         JDialog jDialog=new JDialog(jFrame);
         jDialog.setLayout(new FlowLayout());
         jDialog.setBounds(500,300,1000,300);
-            DocumentModel documentModel=dbConnect.em.find(DocumentModel.class,1);
-        JLabel jLabel=new JLabel(documentModel.getText());
+            TextEnitity textEnitity=dbConnect.em.find(TextEnitity.class,1);
+        JLabel jLabel=new JLabel(textEnitity.getText());
             jDialog.add(jLabel);
             jDialog.setVisible(true);
 
