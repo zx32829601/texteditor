@@ -47,11 +47,9 @@ public class FileEditor implements ActionListener {
                 tmpMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_DOWN_MASK));
                 menuFile.add(tmpMenuItem);
                 menuFile.addSeparator();
-
             }else {
                 menuFile.add(tmpMenuItem);
             }
-
         }
 
 
@@ -69,7 +67,6 @@ public class FileEditor implements ActionListener {
             new UI().setVisible(true);
         }
     }
-
 
     private void openFile() {
         if (isCurrentFileSaved()) { // 文件是否為儲存狀態
@@ -96,7 +93,7 @@ public class FileEditor implements ActionListener {
     private void open() {
         // fileChooser 是 JFileChooser 的實例
         // 顯示檔案選取的對話方塊
-        int option = fileChooser.showDialog(null, null);
+        int option = fileChooser.showOpenDialog(null);
 
         // 使用者按下確認鍵
         if (option == JFileChooser.APPROVE_OPTION) {
@@ -154,7 +151,7 @@ public class FileEditor implements ActionListener {
 
     private void saveFileAs() {
         // 顯示檔案對話方塊
-        int option = fileChooser.showDialog(null, null);
+        int option = fileChooser.showSaveDialog(null);
         // 如果確認選取檔案
         if (option == JFileChooser.APPROVE_OPTION) {
             // 取得選擇的檔案

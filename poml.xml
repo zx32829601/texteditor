@@ -16,6 +16,13 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
+    <repositories>
+        <repository>
+            <id>objectdb</id>
+            <name>ObjectDB Repository</name>
+            <url>https://m2.objectdb.com</url>
+        </repository>
+    </repositories>
     <licenses>
         <license>
             <name>ObjectDB License Agreement, Version 2.0.4</name>
