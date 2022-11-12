@@ -47,11 +47,9 @@ public class FileEditor implements ActionListener {
                 tmpMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_DOWN_MASK));
                 menuFile.add(tmpMenuItem);
                 menuFile.addSeparator();
-
             }else {
                 menuFile.add(tmpMenuItem);
             }
-
         }
 
 
@@ -69,7 +67,6 @@ public class FileEditor implements ActionListener {
             new UI().setVisible(true);
         }
     }
-
 
     private void openFile() {
         if (isCurrentFileSaved()) { // 文件是否為儲存狀態

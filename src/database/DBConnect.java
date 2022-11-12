@@ -8,7 +8,7 @@ public class DBConnect {
     EntityManager em;
 
     public DBConnect(){
-         emf= Persistence.createEntityManagerFactory("objectdb:myDbFile.odb");
+         emf= Persistence.createEntityManagerFactory("myDbFile.odb");
          em=emf.createEntityManager();
         em.getTransaction().begin();
     }
